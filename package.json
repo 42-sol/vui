@@ -1,23 +1,23 @@
 {
   "name": "@42sol/vui",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
 
   "files": [
     "dist"
   ],
 
-  "main": "./dist/@42sol/vui.umd.js",
-  "module": "./dist/@42sol/vui.es.js",
+  "main": "./dist/42sol-vui.umd.js",
+  "module": "./dist/42sol-vui.es.js",
   "exports": {
     ".": {
-      "import": "./dist/@42sol/vui.es.js",
-      "require": "./dist/@42sol/vui.umd.js"
+      "import": "./dist/42sol-vui.es.js",
+      "require": "./dist/42sol-vui.umd.js"
     },
-    "./dist/@42sol/vui.css": {
-      "import": "./dist/@42sol/vui.css",
-      "require": "./dist/@42sol/vui.css"
+    "./dist/42sol-vui.css": {
+      "import": "./dist/42sol-vui.css",
+      "require": "./dist/42sol-vui.css"
     }
   },
   "types": "./dist/main.d.ts",

@@ -32,7 +32,7 @@ export default defineConfig({
       entry: "src/components/main.ts",
       name: 'myLibraryVueTs',
       formats: ["es", "cjs", "umd"],
-      fileName: format => `my-library-vue-ts.${format}.js`
+      fileName: format => `42sol-vui.${format}.js`
     },
     rollupOptions: {
       // make sure to externalize deps that should not be bundled
@@ -43,7 +43,7 @@ export default defineConfig({
       external: ['vue'],
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'main.css') return 'my-library-vue-ts.css';
+          if (assetInfo.name === 'main.css') return '42sol-vui.css';
           return assetInfo.name;
         },
         exports: "named",
