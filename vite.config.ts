@@ -6,6 +6,7 @@ import typescript2 from 'rollup-plugin-typescript2';
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
+  base: '/vui/',
   plugins: [
     vue(),
     dts({
