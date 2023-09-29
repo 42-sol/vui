@@ -4,7 +4,7 @@ Cascader(:data='data' v-model='value')
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import Cascader from './components/Cascader.vue';
+import { Cascader } from './components';
 
 const value = ref([]);
 
