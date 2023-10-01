@@ -7,7 +7,7 @@
 <script setup lang='ts'>
 import type { Ref } from 'vue' 
 import { computed, nextTick, onMounted, ref } from 'vue';
-import { createStyleClasses } from '../utils/createStyleClasses';
+import { createStyleClasses } from '@/utils/createStyleClasses';
 
 // PROPS
 const props = defineProps<{

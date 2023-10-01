@@ -1,4 +1,7 @@
+import 'tailwindcss/tailwind.css';
+
 import type { App } from 'vue';
+
 import {
   Cascader
 } from "@/components";
