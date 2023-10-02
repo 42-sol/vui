@@ -1,11 +1,11 @@
 <template lang="pug">
-Cascader(:data='data' v-model='value')
+.p-2
+  p(v-for='v in value') {{ v }}
+  Cascader.w-96(:data='data' v-model='value')
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-
-const value = ref([]);
 
 const data = [
   { value: "Account", title: "Account" },
@@ -16,7 +16,20 @@ const data = [
     value: "Document",
     title: "Document",
     options: [
-      { value: "1", title: "Документы ФЛ" },
+      { value: "FamilyMember", title: "Члены семьи", options: [] },
+      {
+        value: "Company",
+        title: "Компании",
+        options: [
+          {
+            value: "1",
+            title: "Макдональдас",
+            options: [
+              { value: "1", title: "Документы Мака" }
+            ]
+          }
+        ]
+      },
     ]
   },
   {
@@ -34,6 +47,10 @@ const data = [
     ]
   },
 ];
+
+// const value = ref([data[4], data[4]!.options![0]]);
+// const value = ref(['Document', '1']);
+const value = ref(['Document', 'Company', '1', '1']);
 </script>
 
 <style scoped>

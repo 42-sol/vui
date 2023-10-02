@@ -8,19 +8,9 @@ yarn add @42sol/vui
 ```
 
 ## Usage
-### Import on demand
-```jsx
-<template>
-  <Button type='primary' class='m-2'>Hello VUI</Button>
-</template>
-
-<script>
-import { Button } from '42sol/vui';
-</script>
-```
 
 ### Use plugin
-```javascript
+```js
 // src/main.js
 import VUI from './components/main';
 import '@42sol/vui/dist/42sol-vui.css';
@@ -40,3 +30,24 @@ app
   <Button type='primary' class='m-2'>Hello VUI</Button>
 </template>
 ```
+
+### Import on demand
+```jsx
+<template>
+  <Button type='primary' class='m-2'>Hello VUI</Button>
+</template>
+
+<script>
+import { Button } from '42sol/vui';
+</script>
+```
+
+> Do not forget to import lib styles
+```js
+// Probably src/main.js
+import '@42sol/vui/dist/42sol-vui.css';
+```
+
+## Components
+
+- [Cascader]('./src/components/')

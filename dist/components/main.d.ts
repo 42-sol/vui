@@ -1,7 +1,8 @@
 import type { App } from 'vue';
-import { Cascader } from '../components';
+import { Cascader, CollapseBody } from '../components';
+import { createStyleClasses } from '../utils/createStyleClasses';
 declare const _default: {
     install: (app: App) => void;
 };
 export default _default;
-export { Cascader };
+export { Cascader, CollapseBody, createStyleClasses };

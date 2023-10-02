@@ -1,6 +1,6 @@
-export function createStyleClasses(
+export const createStyleClasses = (
   callback: (params: { classes: vClasses, styles: vStyles}) => void
-): { class: vClasses, style: vStyles } {
+): { class: vClasses, style: vStyles } => {
   const classes: vClasses = [];
   const styles: vStyles = {};
 
@@ -10,4 +10,9 @@ export function createStyleClasses(
     class: classes,
     style: styles
   }; 
+};
+
+export const pixelsFromNumber = (_: string | number): string => {
+  if (typeof _ === 'number') return `${_}px`
+  return _;
 };

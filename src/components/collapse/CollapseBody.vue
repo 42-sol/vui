@@ -1,18 +1,20 @@
 <template lang='pug'>
-.transition-all.overflow-hidden(v-bind='styling')
-  .transition-all(ref='collapseBodyEl')
+.vui-collapse-body(v-bind='styling')
+  .vui-collapse-body__content(ref='collapseBodyEl' v-bind='collapseStyling')
     slot
 </template>
 
 <script setup lang='ts'>
 import type { Ref } from 'vue' 
 import { computed, nextTick, onMounted, ref } from 'vue';
-import { createStyleClasses } from '@/utils/createStyleClasses';
+import { createStyleClasses } from '@/components/main';
+import { pixelsFromNumber } from '@/utils/createStyleClasses';
 
 // PROPS
 const props = defineProps<{
   expanded: boolean,
   option: CascadeOptionObj
+  padding?: string | number
 }>();
 
 /**
@@ -29,7 +31,7 @@ const height: Ref<number | undefined> = ref(0);
  * MOUNTED
  */
 onMounted(() => {
-  collapseBodyEl.value?.addEventListener('v42-collapse-expand-changed', onExpandEvent as EventListener);
+  collapseBodyEl.value?.addEventListener('vui-collapse-expand-changed', onExpandEvent as EventListener);
   height.value = collapseBodyEl.value?.offsetHeight || 0;
 });
 
@@ -66,12 +68,12 @@ const _isOpened = computed(() => {
 });
 
 function floatExpandEvent() {
-  const _ = new CustomEvent('v42-collapse-expand-changed', { bubbles: true });
+  const _ = new CustomEvent('vui-collapse-expand-changed', { bubbles: true });
   collapseBodyEl.value?.dispatchEvent(_);
 }
 
 /**
- * v-bind class & style to component
+ * v-bind class & style to root component
  */
 const styling = computed(() => createStyleClasses(({ styles }) => {
   if (height.value !== undefined) {
@@ -88,9 +90,18 @@ const styling = computed(() => createStyleClasses(({ styles }) => {
   } else {
     updateHeight()
   }
-}))
+}));
+
+/**
+ * v-bind class & style to collapse component
+ */
+const collapseStyling = computed(() => createStyleClasses(({ styles }) => {
+  styles.paddingLeft = pixelsFromNumber(props.padding || '1rem')
+}));
 </script>
 
-<style scoped lang='postcss'>
-
+<style scoped lang='scss'>
+.vui-collapse-body {
+  @apply transition-all overflow-hidden;
+}
 </style>

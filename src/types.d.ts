@@ -21,11 +21,6 @@ type CascadeOptionObj = {
   loadingState?: 'process' | 'ready' | undefined
 };
 
-type SelectedOption = {
-  cascadeId: number,
-  option: CascadeOptionObj
-};
-
 type OptionClickEmitOptions = {
   option: CascadeOptionObj,
   last: boolean
@@ -34,4 +29,10 @@ type OptionClickEmitOptions = {
 type CascadeSelectEmitOptions = {
   cascade: CascadeObj,
   optionParams: OptionClickEmitOptions,
+};
+
+type CascadesConfig = {
+  width: string | number,
+  maxHeight: string | number,
+  height: string | number
 };
