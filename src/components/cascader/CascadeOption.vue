@@ -36,6 +36,7 @@ import type { Ref } from 'vue';
 import { computed, inject, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import { createStyleClasses } from '@/utils/createStyleClasses';
+import CollapseBody from '../collapse/CollapseBody.vue';
 
 //PROPS
 const props = defineProps<{

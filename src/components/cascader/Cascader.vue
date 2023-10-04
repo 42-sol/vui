@@ -1,25 +1,25 @@
 <template lang='pug'>
 .vui-cascader(ref='cascaderEl')
-  CascadeInput(
-    :values='selectedTitles'
-    :separator='props.separator'
-    @on-click='onInputClick'
-  )
+  .vue-cascader__input-wrapper(ref='inputWrapperEl')
+    CascadeInput(
+      :values='selectedTitles'
+      :separator='props.separator'
+      @on-click='onInputClick'
+    )
 
-  .vui-cascader__dropdown-wrapper
-    .vui-cascader__dropdown
-      TransitionGroup(tag='div' mode='in-out' name='vui-cascader-transition')
-        Cascade(
-          v-for='(cascade, i) in visibleCascades'
-          :key='cascade.id'
-          :cascade='cascade'
-          :padding='i'
-          :fog='!isCurrent(cascade)'
-          :canBack='i > 0'
-          :configs='props.cascadesConfig'
-          @on-select='onSelectOption'
-          @on-back='removeCascade'
-        )
+  .vui-cascader__dropdown(ref='dropdownEl')
+    TransitionGroup(tag='div' mode='in-out' name='vui-cascader-transition')
+      Cascade(
+        v-for='(cascade, i) in visibleCascades'
+        :key='cascade.id'
+        :cascade='cascade'
+        :padding='i'
+        :fog='!isCurrent(cascade)'
+        :canBack='i > 0'
+        :configs='props.cascadesConfig'
+        @on-select='onSelectOption'
+        @on-back='removeCascade'
+      )
 </template>
 
 <script setup lang='ts'>
@@ -28,6 +28,7 @@ import { computed, nextTick, onMounted, provide, ref } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import Cascade from './Cascade.vue';
 import CascadeInput from './CascadeInput.vue';
+import { computePosition, flip, shift, offset } from '@floating-ui/vue';
 
 // PROPS
 const props = withDefaults(defineProps<{
@@ -47,6 +48,8 @@ const emit = defineEmits(['update:modelValue']);
  * Cascader root HTML element
  */
 const cascaderEl = ref(null);
+const inputWrapperEl = ref(null);
+const dropdownEl = ref(null);
 
 /**
  * *KLUDGE to make 1st cascade similar to others
@@ -119,7 +122,22 @@ function setIsOpened(val: boolean) {
  */
 onMounted(() => {
   // On click outside root element
-  onClickOutside(cascaderEl.value, clickOutside)
+  onClickOutside(cascaderEl.value, clickOutside);
+
+  const input = inputWrapperEl.value! as HTMLElement
+  const dropdown = dropdownEl.value! as HTMLElement
+
+  computePosition(input, dropdown, {
+    middleware: [ 
+      flip(),
+      offset(4),
+      shift()
+    ],
+  }).then(({y}) => {
+    Object.assign(dropdown.style, {
+      top: `${y}px`,
+    });
+  });
 });
 
 /**
@@ -243,10 +261,6 @@ function reformData(_selectedOptions: CascadeOptionObj[]): unknown {
 <style scoped lang='scss'>
 .vui-cascader {
   @apply relative;
-
-  &__dropdown-wrapper {
-    @apply h-0 relative mt-1;
-  }
 
   &__dropdown {
     @apply absolute top-0 left-2;

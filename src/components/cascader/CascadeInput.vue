@@ -1,5 +1,5 @@
 <template lang='pug'>
-.vui-cascader__input(@click='onInputClick') 
+.vui-cascade-input(@click='onInputClick') 
   .vui-cascade-input__label {{ inputLabel }}
   .vui-cascade-input__error(v-if='errorMsg') {{ errorMsg }}
 </template>
