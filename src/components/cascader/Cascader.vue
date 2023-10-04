@@ -263,6 +263,7 @@ function reformData(_selectedOptions: CascadeOptionObj[]): unknown {
   @apply relative;
 
   &__dropdown {
+    z-index: var(--vui-floating-z-index);
     @apply absolute top-0 left-2;
   }
 

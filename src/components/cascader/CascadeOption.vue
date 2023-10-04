@@ -92,7 +92,16 @@ const styling = computed(() => createStyleClasses(({ classes }) => {
  */
 function onClick(): void {
   const params = { option: props.option, last: !hasOwnOptions.value };
-  emit('on-click', params);
+
+  let shouldEmit = true;
+  const preventEmit = () => shouldEmit = false; 
+
+  props.option.onClick?.({ preventEmit, option: props.option });
+
+  if (shouldEmit) {
+    emit('on-click', params);
+  }
+
 }
 </script>
 

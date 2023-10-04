@@ -1353,8 +1353,11 @@ const lt = (t, e) => {
       c.value && f.push("vui-cascade-option--selected");
     }));
     function a() {
+      var p, h;
       const f = { option: n.option, last: !s.value };
-      e("on-click", f);
+      let u = !0;
+      const d = () => u = !1;
+      (h = (p = n.option).onClick) == null || h.call(p, { preventEmit: d, option: n.option }), u && e("on-click", f);
     }
     return (f, u) => {
       const d = un("CascadeOption", !0);
@@ -1406,7 +1409,7 @@ const lt = (t, e) => {
     };
   }
 });
-const Fo = /* @__PURE__ */ lt(Mo, [["__scopeId", "data-v-6e97d3f3"]]), jo = { class: "vui-cascade__scrollable" }, Bo = {
+const Fo = /* @__PURE__ */ lt(Mo, [["__scopeId", "data-v-89b82406"]]), jo = { class: "vui-cascade__scrollable" }, Bo = {
   key: 0,
   class: "vui-cascade__top-space"
 }, Do = {
@@ -2395,7 +2398,7 @@ const wi = {
     ], 512));
   }
 });
-const _i = /* @__PURE__ */ lt(bi, [["__scopeId", "data-v-922796ba"]]), Si = {
+const _i = /* @__PURE__ */ lt(bi, [["__scopeId", "data-v-bc469794"]]), Si = {
   install: (t) => {
     t.component("Cascader", _i), t.component("CollapseBody", Qe);
   }

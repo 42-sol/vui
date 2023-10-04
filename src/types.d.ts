@@ -17,7 +17,7 @@ type CascadeOptionObj = {
   children?: CascadeOptionObj[],
   options?: CascadeOptionObj[],
   getAsyncOptions?: () => Promise,
-
+  onClick?: (params: { preventEmit: () => void, option: CascadeOptionObj }) => unknown;
   loadingState?: 'process' | 'ready' | undefined
 };
 
