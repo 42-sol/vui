@@ -41,7 +41,8 @@ const props = withDefaults(defineProps<{
   reform?: (_selectedOptions: CascadeOptionObj[]) => unknown,
   placeholder?: string
 }>(), {
-  separator: '/'
+  separator: '/',
+  placeholder: ''
 });
 // EMITS
 const emit = defineEmits(['update:modelValue']);

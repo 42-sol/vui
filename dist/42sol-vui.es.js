@@ -2270,7 +2270,7 @@ const xi = {
     cascadesConfig: {},
     transform: {},
     reform: {},
-    placeholder: {}
+    placeholder: { default: "" }
   },
   emits: ["update:modelValue"],
   setup(t, { emit: e }) {
@@ -2407,7 +2407,7 @@ const xi = {
     ], 512));
   }
 });
-const Ci = /* @__PURE__ */ lt(_i, [["__scopeId", "data-v-aea217ca"]]), Si = {
+const Ci = /* @__PURE__ */ lt(_i, [["__scopeId", "data-v-a7ab9232"]]), Si = {
   install: (t) => {
     t.component("Cascader", Ci), t.component("CollapseBody", Qe);
   }
