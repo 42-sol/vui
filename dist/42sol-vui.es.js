@@ -2273,13 +2273,13 @@ const wi = {
     }, c = j(!1), l = j(""), a = j([]);
     v(r, 0);
     const f = F(() => c.value ? a.value : []), u = j([]);
-    u.value = C(n.modelValue), mn("selectedOptions", u);
+    u.value = C(n.modelValue || []), mn("selectedOptions", u);
     const d = F(() => u.value.map((y) => y.title)), p = (y) => {
       var w;
       return ((w = a.value[a.value.length - 1]) == null ? void 0 : w.id) === y.id;
     };
     function h(y) {
-      c.value = y, y || (u.value = C(n.modelValue));
+      c.value = y, y || (u.value = C(n.modelValue || []));
     }
     ke(() => {
       Cn(o.value, m);
@@ -2398,7 +2398,7 @@ const wi = {
     ], 512));
   }
 });
-const _i = /* @__PURE__ */ lt(bi, [["__scopeId", "data-v-bc469794"]]), Si = {
+const _i = /* @__PURE__ */ lt(bi, [["__scopeId", "data-v-393c56f7"]]), Si = {
   install: (t) => {
     t.component("Cascader", _i), t.component("CollapseBody", Qe);
   }

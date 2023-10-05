@@ -89,7 +89,7 @@ const visibleCascades = computed(() => {
  * *Provide it deeper
  */
 const selectedOptions: Ref<CascadeOptionObj[]> = ref([]);
-selectedOptions.value = transformData(props.modelValue);
+selectedOptions.value = transformData(props.modelValue || []);
 provide('selectedOptions', selectedOptions);
 
 /**
@@ -113,7 +113,7 @@ function setIsOpened(val: boolean) {
   isOpened.value = val;
   
   if (!val) {
-    selectedOptions.value = transformData(props.modelValue);
+    selectedOptions.value = transformData(props.modelValue || []);
   }
 };
 
