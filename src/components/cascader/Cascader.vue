@@ -4,6 +4,7 @@
     CascadeInput(
       :values='selectedTitles'
       :separator='props.separator'
+      :placeholder='props.placeholder'
       @on-click='onInputClick'
     )
 
@@ -37,7 +38,8 @@ const props = withDefaults(defineProps<{
   separator?: string
   cascadesConfig?: CascadesConfig,
   transform?: (_modelValue: unknown, _createCascadeFrom: (_: CascadeOptionObj, id: number) => void) => CascadeOptionObj[],
-  reform?: (_selectedOptions: CascadeOptionObj[]) => unknown
+  reform?: (_selectedOptions: CascadeOptionObj[]) => unknown,
+  placeholder?: string
 }>(), {
   separator: '/'
 });

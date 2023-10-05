@@ -1,6 +1,7 @@
 <template lang='pug'>
 .vui-cascade-input(@click='onInputClick') 
-  .vui-cascade-input__label {{ inputLabel }}
+  .vui-cascade-input__label(v-if='inputLabel') {{ inputLabel }}
+  .vui-cascade-input__placeholder(v-else) {{ props.placeholder }}
   .vui-cascade-input__error(v-if='errorMsg') {{ errorMsg }}
 </template>
 
@@ -12,6 +13,7 @@ const props = withDefaults(defineProps<{
   values: string[],
   errorMsg?: string,
   separator?: string
+  placeholder?: string
 }>(), {
   separator: '/'
 });
@@ -39,6 +41,10 @@ function onInputClick() {
   
   &__label {
     @apply flex items-center h-8 overflow-x-auto whitespace-nowrap;
+  }
+
+  &__placeholder {
+    @apply text-gray-400;
   }
   
   &__error {
