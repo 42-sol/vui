@@ -5,6 +5,7 @@
       :values='selectedTitles'
       :separator='props.separator'
       :placeholder='props.placeholder'
+      :disabled='props.disabled'
       @on-click='onInputClick'
     )
 
@@ -39,7 +40,8 @@ const props = withDefaults(defineProps<{
   cascadesConfig?: CascadesConfig,
   transform?: (_modelValue: unknown, _createCascadeFrom: (_: CascadeOptionObj, id: number) => void) => CascadeOptionObj[],
   reform?: (_selectedOptions: CascadeOptionObj[]) => unknown,
-  placeholder?: string
+  placeholder?: string,
+  disabled?: boolean
 }>(), {
   separator: '/',
   placeholder: ''
@@ -113,6 +115,8 @@ const isCurrent = (cascade: CascadeObj) => {
  * Hide or open cascades
  */
 function setIsOpened(val: boolean) {
+  if (val && props.disabled) return;
+
   isOpened.value = val;
   
   if (!val) {
