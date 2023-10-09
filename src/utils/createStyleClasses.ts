@@ -1,3 +1,5 @@
+import type { vClasses, vStyles } from '@/types.d';
+
 export const createStyleClasses = (
   callback: (params: { classes: vClasses, styles: vStyles}) => void
 ): { class: vClasses, style: vStyles } => {

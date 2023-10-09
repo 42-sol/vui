@@ -31,6 +31,7 @@ import { onClickOutside } from '@vueuse/core';
 import Cascade from './Cascade.vue';
 import CascadeInput from './CascadeInput.vue';
 import { computePosition, flip, shift, offset } from '@floating-ui/vue';
+import type { CascadeObj, CascadeOptionObj, CascadesConfig, CascadeSelectEmitOptions } from '@/types.d';
 
 // PROPS
 const props = withDefaults(defineProps<{

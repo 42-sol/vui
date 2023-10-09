@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { h, ref } from 'vue';
 
 const data = [
   { value: "Account", title: "Account" },
@@ -26,7 +26,13 @@ const data = [
             value: "1",
             title: "Макдональдас",
             options: [
-              { value: "1", title: "Документы Мака" }
+              {
+                value: "1",
+                title: "Документы Мака",
+                render: () => {
+                  return h('div', 'Доки мака');
+                }
+              }
             ]
           }
         ]
@@ -49,11 +55,5 @@ const data = [
   },
 ];
 
-// const value = ref([data[4], data[4]!.options![0]]);
-// const value = ref(['Document', '1']);
 const value = ref(['Document', 'Company', '1', '1']);
 </script>
-
-<style scoped>
-
-</style>

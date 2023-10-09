@@ -22,6 +22,7 @@ import { computed } from 'vue';
 import { Icon } from '@iconify/vue';
 import CascadeOption from './CascadeOption.vue';
 import { createStyleClasses, pixelsFromNumber } from '@/utils/createStyleClasses';
+import type { CascadeObj, CascadesConfig, OptionClickEmitOptions } from '@/types.d';
 
 // PROPS
 const props = defineProps<{

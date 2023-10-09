@@ -9,6 +9,7 @@ import type { Ref } from 'vue'
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { createStyleClasses } from '@/components/main';
 import { pixelsFromNumber } from '@/utils/createStyleClasses';
+import type { CascadeOptionObj } from '@/types.d';
 
 // PROPS
 const props = defineProps<{

@@ -1,16 +1,18 @@
-type vClasses = string[];
-type vStyles = { [key: string]: string };
+import { h } from 'vue';
 
-type CascadeObj = {
+export type vClasses = string[];
+export type vStyles = { [key: string]: string };
+
+export type CascadeObj = {
   id: number,
   options: CascadeOptionObj[]
 };
 
-type CascaderDataItem = {
+export type CascaderDataItem = {
   options: CascadeOptionObj[]
 }
 
-type CascadeOptionObj = {
+export type CascadeOptionObj = {
   id?: string | number,
   value: string | number,
   title: string,
@@ -18,20 +20,21 @@ type CascadeOptionObj = {
   options?: CascadeOptionObj[],
   getAsyncOptions?: () => Promise,
   onClick?: (params: { preventEmit: () => void, option: CascadeOptionObj }) => unknown;
-  loadingState?: 'process' | 'ready' | undefined
+  loadingState?: 'process' | 'ready' | undefined,
+  render?: () => h
 };
 
-type OptionClickEmitOptions = {
+export type OptionClickEmitOptions = {
   option: CascadeOptionObj,
   last: boolean
 };
 
-type CascadeSelectEmitOptions = {
+export type CascadeSelectEmitOptions = {
   cascade: CascadeObj,
   optionParams: OptionClickEmitOptions,
 };
 
-type CascadesConfig = {
+export type CascadesConfig = {
   width: string | number,
   maxHeight: string | number,
   height: string | number
