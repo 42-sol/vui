@@ -25,6 +25,9 @@
       )
         template(#cascadeNoData='{ cascade }')
           slot(name='cascadeNoData' v-bind='cascade')
+
+        template(#beforeOptions='{ cascade }')
+          slot(name='beforeOptions' v-bind='{ cascade, selectedOptions }')
 </template>
 
 <script setup lang='ts'>
