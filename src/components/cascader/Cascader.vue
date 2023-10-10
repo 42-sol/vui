@@ -32,7 +32,7 @@
 
 <script setup lang='ts'>
 import type { ComputedRef, Ref } from 'vue';
-import { computed, nextTick, onMounted, provide, ref } from 'vue';
+import { computed, nextTick, onMounted, provide, ref, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import Cascade from './Cascade.vue';
 import CascadeInput from './CascadeInput.vue';
@@ -65,15 +65,6 @@ const inputWrapperEl = ref(null);
 const dropdownEl = ref(null);
 
 /**
- * *KLUDGE to make 1st cascade similar to others
- */
-const rootOption: ComputedRef<CascadeOptionObj> = computed(() => ({
-  value: '__ROOT_CASCADE__',
-  title: '',
-  options: props.data
-}));
-
-/**
  * Are cascades visible
  */
 const isOpened: Ref<boolean> = ref(false);
@@ -103,11 +94,26 @@ const visibleCascades = computed(() => {
  */
 const selectedOptions: Ref<CascadeOptionObj[]> = ref([]);
 
-function refresh() {
-  addCreatedCascadeFrom(rootOption.value, 0);
-  selectedOptions.value = transformData(props.modelValue || []);
+/**
+ * *KLUDGE to make 1st cascade similar to others
+ */
+const rootOption: ComputedRef<CascadeOptionObj> = computed(() => {
+console.log('props.data has been changed', props.data)
+
+return {
+  value: '__ROOT_CASCADE__',
+  title: '',
+  options: props.data
 }
-refresh();
+});
+
+watch(() => props.data, () => {
+  function refresh() {
+    addCreatedCascadeFrom(rootOption.value, 0);
+    selectedOptions.value = transformData(props.modelValue || []);
+  }
+  refresh();
+})
 
 provide('selectedOptions', selectedOptions);
 
@@ -231,11 +237,11 @@ function transformData(_modelValue: unknown): CascadeOptionObj[] {
     const value = values[i];
 
     const deepFindByValue = (arr: CascadeOptionObj[]): CascadeOptionObj | undefined => {
-      let _ = arr.find((_) => _.value === value);
+      let _ = arr?.find((_) => _.value === value);
       
       if (_) return _;
 
-      for (let i = 0; i < arr.length; i++) {
+      for (let i = 0; i < arr?.length; i++) {
         if (arr[i].children?.length) {
           _ = deepFindByValue(arr[i].children!);
 
