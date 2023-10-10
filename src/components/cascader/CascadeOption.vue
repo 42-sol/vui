@@ -14,9 +14,7 @@
         )
           Icon(icon='bxs:right-arrow')
 
-      div
-        RenderOption(v-if='props.option.render')
-        span(v-else) {{ props.option.title }}
+      CascadeOptionTitle(:option='props.option')
     .vui-cascade-oprion__next-btn(v-if='hasOwnOptions')
       span(v-if='!option.loadingState')
         Icon(icon='ep:arrow-right')
@@ -40,6 +38,7 @@ import { computed, inject, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import { createStyleClasses } from '@/utils/createStyleClasses';
 import CollapseBody from '../collapse/CollapseBody.vue';
+import CascadeOptionTitle from './CascadeOptionTitle.vue';
 import type { CascadeObj, CascadeOptionObj } from '@/types.d';
 
 //PROPS
@@ -51,13 +50,6 @@ const props = defineProps<{
 const selectedOptions: Ref<CascadeOptionObj[]> | undefined = inject('selectedOptions');
 //EMITS
 const emit = defineEmits(['on-click']);
-
-/**
- * Render option title
- */
-const RenderOption = () => {
-  return props.option.render?.();
-};
 
 /**
  * Prop to open collapse with child options
@@ -141,7 +133,7 @@ $el: 'vui-cascade-option';
   }
 
   &__tree-btn-space {
-    @apply text-gray-500 text-xs w-6 h-6;
+    @apply text-gray-500 text-xs w-6 h-6 flex-shrink-0;
   }
 
   &__tree-btn {

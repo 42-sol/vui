@@ -2,6 +2,7 @@
 .p-2
   p(v-for='v in value') {{ v }}
   Cascader.w-96(:data='data' v-model='value')
+  Cascader.w-96(:data='[]')
   p Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo aspernatur asperiores repellendus facilis quo sequi perferendis illum iure, rem est distinctio nobis veritatis, amet maxime laudantium quia non velit a!
 </template>
 
@@ -15,7 +16,7 @@ const data = [
   { value: "Contract", title: "Contract" },
   {
     value: "Document",
-    title: "Document",
+    title: "Document asdasdasdasdasdasdasdas",
     options: [
       { value: "FamilyMember", title: "Члены семьи", options: [] },
       {

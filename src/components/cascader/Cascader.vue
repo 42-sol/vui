@@ -21,7 +21,10 @@
         :configs='props.cascadesConfig'
         @on-select='onSelectOption'
         @on-back='removeCascade'
+        :noDataText='props.noDataText'
       )
+        template(#cascadeNoData='{ cascade }')
+          slot(name='cascadeNoData' v-bind='cascade')
 </template>
 
 <script setup lang='ts'>
@@ -45,7 +48,8 @@ const props = withDefaults(defineProps<{
   disabled?: boolean
 }>(), {
   separator: '/',
-  placeholder: ''
+  placeholder: '',
+  noDataText: ''
 });
 // EMITS
 const emit = defineEmits(['update:modelValue']);
@@ -278,7 +282,7 @@ function reformData(_selectedOptions: CascadeOptionObj[]): unknown {
   &-transition {
     &-enter-from,
     &-leave-to {
-      @apply translate-x-60 opacity-0;
+      @apply translate-x-32 opacity-0;
     }
     &-enter-active,
     &-leave-active {

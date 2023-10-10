@@ -1,4 +1,4 @@
-import { h } from 'vue';
+import { VNode } from 'vue';
 
 export type vClasses = string[];
 export type vStyles = { [key: string]: string };
@@ -21,7 +21,7 @@ export type CascadeOptionObj = {
   getAsyncOptions?: () => Promise,
   onClick?: (params: { preventEmit: () => void, option: CascadeOptionObj }) => unknown;
   loadingState?: 'process' | 'ready' | undefined,
-  render?: () => h
+  render?: () => VNode
 };
 
 export type OptionClickEmitOptions = {

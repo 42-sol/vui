@@ -6,12 +6,17 @@
         slot(name='backBtn' v-bind='{ back }')
           Icon(icon='ep:back')
 
+      slot(name='beforeOptions' v-bind='{ cascade: props.cascade }')
+
     CascadeOption(
       v-for='option in cascade.options' :key='option.id || option.value'
       :cascade='cascade'
       :option='option'
       @on-click='onOptionClick'
     )
+
+    slot(name='cascadeNoData' v-bind='{ cascade: props.cascade }')
+      .vui-cascade__no-data(v-if='!cascade.options.length') {{ props.noDataText || 'no data' }}
 
     Transition(class='vui-cascade__fog-transition')
       .vui-cascade__fog(v-if='props.fog')
@@ -31,6 +36,7 @@ const props = defineProps<{
   fog: boolean
   canBack: boolean,
   configs: CascadesConfig | undefined
+  noDataText?: string
 }>();
 // EMITS
 const emit = defineEmits(['on-select', 'on-back']);
@@ -76,6 +82,10 @@ function back() {
 
   &__back-btn {
     @apply h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-gray-200;
+  }
+
+  &__no-data {
+    @apply text-center p-2 text-gray-500;
   }
 
   &__fog {
