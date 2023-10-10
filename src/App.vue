@@ -1,16 +1,11 @@
 <template lang="pug">
 .p-2
+  Cascader.w-96(:data='data' v-model='value' clearable)
   p(v-for='v in value') {{ v }}
-  button.border(@click='onAddNew') add new account
-  Cascader.w-96(:data='data' v-model='value')
-  Cascader.w-96(:data='data2')
-  p Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo aspernatur asperiores repellendus facilis quo sequi perferendis illum iure, rem est distinctio nobis veritatis, amet maxime laudantium quia non velit a!
 </template>
 
 <script setup lang="ts">
 import { h, ref } from 'vue';
-import type { Ref } from 'vue';
-import type { CascadeOptionObj } from './types.d';
 
 const data = [
   { value: "Account", title: "Account" },
@@ -59,12 +54,5 @@ const data = [
   },
 ];
 
-const data2: Ref<CascadeOptionObj[]> = ref([]);
 const value = ref(['Document', 'Company', '1', '1']);
-
-const idx = ref(1)
-function onAddNew() {
-  data2.value = [{ value: `Account-${idx.value}`, title: `Account-${idx.value}` }];
-  idx.value++;
-}
 </script>

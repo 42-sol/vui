@@ -7,6 +7,8 @@
       :placeholder='props.placeholder'
       :disabled='props.disabled'
       @on-click='onInputClick'
+      @on-clear='onClear'
+      :clearable='props.clearable'
     )
 
   .vui-cascader__dropdown(ref='dropdownEl')
@@ -48,7 +50,8 @@ const props = withDefaults(defineProps<{
   transform?: (_modelValue: unknown, _createCascadeFrom: (_: CascadeOptionObj, id: number) => void) => CascadeOptionObj[],
   reform?: (_selectedOptions: CascadeOptionObj[]) => unknown,
   placeholder?: string,
-  disabled?: boolean
+  disabled?: boolean,
+  clearable?: boolean
 }>(), {
   separator: '/',
   placeholder: '',
@@ -93,29 +96,26 @@ const visibleCascades = computed(() => {
  * *Provide it deeper
  */
 const selectedOptions: Ref<CascadeOptionObj[]> = ref([]);
+provide('selectedOptions', selectedOptions);
 
 /**
  * *KLUDGE to make 1st cascade similar to others
  */
-const rootOption: ComputedRef<CascadeOptionObj> = computed(() => {
-console.log('props.data has been changed', props.data)
-
-return {
+const rootOption: ComputedRef<CascadeOptionObj> = computed(() => ({
   value: '__ROOT_CASCADE__',
   title: '',
   options: props.data
+}));
+
+function refresh() {
+  addCreatedCascadeFrom(rootOption.value, 0);
+  selectedOptions.value = transformData(props.modelValue || []);
 }
-});
+refresh();
 
 watch(() => props.data, () => {
-  function refresh() {
-    addCreatedCascadeFrom(rootOption.value, 0);
-    selectedOptions.value = transformData(props.modelValue || []);
-  }
   refresh();
 })
-
-provide('selectedOptions', selectedOptions);
 
 /**
  * Array of selected-options' titles
@@ -204,7 +204,7 @@ function onSelectOption({ cascade, optionParams }: CascadeSelectEmitOptions) {
  * Create cascade obj and push to arr
  */
 function addCreatedCascadeFrom(option: CascadeOptionObj, id?: number) {
-  const newIdx = id || cascades.value.length;
+  const newIdx = (id === undefined || id === null) ? cascades.value.length : id;
   if (id !== undefined) cascades.value = cascades.value.slice(0, id);
   cascades.value.push(createCascadeFrom(option, newIdx));
 };
@@ -222,6 +222,15 @@ function createCascadeFrom(option: CascadeOptionObj, id: number) {
 function removeCascade() {
   cascades.value.pop();
 };
+
+/**
+ * Clear the input - set model value as []
+ */
+function onClear() {
+  selectedOptions.value = [];
+  emit('update:modelValue', reformData([]));
+  addCreatedCascadeFrom(rootOption.value, 0);
+}
 
 /**
  * Use transform-method from props or default one

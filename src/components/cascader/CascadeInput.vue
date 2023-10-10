@@ -1,13 +1,23 @@
 <template lang='pug'>
 .vui-cascade-input(@click='onInputClick' v-bind='styling') 
-  .vui-cascade-input__label(v-if='inputLabel') {{ inputLabel }}
-  .vui-cascade-input__placeholder(v-else) {{ props.placeholder }}
-  .vui-cascade-input__error(v-if='errorMsg') {{ errorMsg }}
+  .vui-cascade-input__label
+    span(v-if='inputLabel') {{ inputLabel }}
+    .vuscade-input__placeholder(v-else) {{ props.placeholder }}
+
+  .flex-shrink-0.rounded.p-1(
+    v-if='props.clearable && props.values.length'
+    class='hover:bg-gray-300'
+    @click='onClear'
+  )
+    Icon(icon='material-symbols:close')
+
+.vui-cascade-input__error(v-if='errorMsg') {{ errorMsg }}
 </template>
 
 <script setup lang='ts'>
 import { computed } from 'vue';
 import { createStyleClasses } from '../main';
+import { Icon } from '@iconify/vue';
 
 // PROPS
 const props = withDefaults(defineProps<{
@@ -15,12 +25,13 @@ const props = withDefaults(defineProps<{
   errorMsg?: string,
   separator?: string
   placeholder?: string,
-  disabled?: boolean
+  disabled?: boolean,
+  clearable?: boolean
 }>(), {
   separator: '/'
 });
 // EMITS
-const emit = defineEmits(['on-click']);
+const emit = defineEmits(['on-click', 'on-clear']);
 
 /**
  * Displayed value
@@ -42,18 +53,25 @@ const styling = computed(() => createStyleClasses(({ classes }) => {
 function onInputClick() {
   emit('on-click');
 }
+
+/**
+ * When clear the input field
+ */
+function onClear() {
+  emit('on-clear')
+}
 </script>
 
 <style scoped lang='scss'>
 .vui-cascade-input {
-  @apply border rounded-xl p-1 overflow-hidden;
+  @apply border rounded-xl p-1 overflow-hidden flex items-center justify-between;
 
   &--disabled {
     @apply bg-gray-300 text-gray-500;
   }
   
   &__label {
-    @apply flex items-center h-8 overflow-x-auto whitespace-nowrap;
+    @apply flex-col h-8 overflow-x-auto whitespace-nowrap;
   }
 
   &__placeholder {
