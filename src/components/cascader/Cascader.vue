@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang='ts'>
-import type { Ref } from 'vue';
+import type { ComputedRef, Ref } from 'vue';
 import { computed, nextTick, onMounted, provide, ref } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import Cascade from './Cascade.vue';
@@ -67,11 +67,11 @@ const dropdownEl = ref(null);
 /**
  * *KLUDGE to make 1st cascade similar to others
  */
-const rootOption: CascadeOptionObj = {
+const rootOption: ComputedRef<CascadeOptionObj> = computed(() => ({
   value: '__ROOT_CASCADE__',
   title: '',
   options: props.data
-};
+}));
 
 /**
  * Are cascades visible
@@ -87,7 +87,7 @@ const errorMsg: Ref<string> = ref('');
  * Calculated cascades 
  */
 const cascades: Ref<CascadeObj[]> = ref([]);
-addCreatedCascadeFrom(rootOption, 0);
+
 /**
  * Visible cascades
  */
@@ -102,7 +102,13 @@ const visibleCascades = computed(() => {
  * *Provide it deeper
  */
 const selectedOptions: Ref<CascadeOptionObj[]> = ref([]);
-selectedOptions.value = transformData(props.modelValue || []);
+
+function refresh() {
+  addCreatedCascadeFrom(rootOption.value, 0);
+  selectedOptions.value = transformData(props.modelValue || []);
+}
+refresh();
+
 provide('selectedOptions', selectedOptions);
 
 /**

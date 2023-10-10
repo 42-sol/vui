@@ -1,6 +1,7 @@
 <template lang="pug">
 .p-2
   p(v-for='v in value') {{ v }}
+  button.border(@click='onAddNew') add new account
   Cascader.w-96(:data='data' v-model='value')
   Cascader.w-96(:data='[]')
   p Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo aspernatur asperiores repellendus facilis quo sequi perferendis illum iure, rem est distinctio nobis veritatis, amet maxime laudantium quia non velit a!
@@ -57,4 +58,10 @@ const data = [
 ];
 
 const value = ref(['Document', 'Company', '1', '1']);
+
+const idx = ref(1)
+function onAddNew() {
+  data.unshift({ value: `Account-${idx.value}`, title: `Account-${idx.value}` });
+  idx.value++;
+}
 </script>
