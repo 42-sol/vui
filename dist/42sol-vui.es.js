@@ -1470,9 +1470,9 @@ const jo = /* @__PURE__ */ mt(Fo, [["__scopeId", "data-v-2b5f9ed8"]]), Do = { cl
             J(r.$slots, "backBtn", ct(lt({ back: s })), () => [
               N(Y(it), { icon: "ep:back" })
             ], !0)
-          ]),
-          J(r.$slots, "beforeOptions", ct(lt({ cascade: n.cascade })), void 0, !0)
+          ])
         ])) : H("", !0),
+        J(r.$slots, "beforeOptions", ct(lt({ cascade: n.cascade })), void 0, !0),
         (C(!0), S(Yt, null, Jt(r.cascade.options, (l) => (C(), ft(jo, {
           key: l.id || l.value,
           cascade: r.cascade,
@@ -1492,7 +1492,7 @@ const jo = /* @__PURE__ */ mt(Fo, [["__scopeId", "data-v-2b5f9ed8"]]), Do = { cl
     ], 16));
   }
 });
-const Ho = /* @__PURE__ */ mt(Vo, [["__scopeId", "data-v-317b962c"]]), Wo = {
+const Ho = /* @__PURE__ */ mt(Vo, [["__scopeId", "data-v-4749e1ce"]]), Wo = {
   key: 0,
   class: "vui-cascade-input__label"
 }, zo = {

@@ -6,7 +6,7 @@
         slot(name='backBtn' v-bind='{ back }')
           Icon(icon='ep:back')
 
-      slot(name='beforeOptions' v-bind='{ cascade: props.cascade }')
+    slot(name='beforeOptions' v-bind='{ cascade: props.cascade }')
 
     CascadeOption(
       v-for='option in cascade.options' :key='option.id || option.value'
