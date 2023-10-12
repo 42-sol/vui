@@ -48,6 +48,7 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/language-plugin-pug": "^1.8.15",
     "autoprefixer": "^10.4.16",
+    "chromatic": "^7.3.0",
     "eslint": "^8.50.0",
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-vue": "^9.17.0",
