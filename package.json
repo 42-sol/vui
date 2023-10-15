@@ -26,9 +26,9 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint ./src",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "deploy-storybook": "gh-pages -d storybook-static"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@floating-ui/vue": "^1.0.2",
@@ -37,13 +37,6 @@
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
-    "@storybook/addon-essentials": "^7.4.6",
-    "@storybook/addon-interactions": "^7.4.6",
-    "@storybook/addon-links": "^7.4.6",
-    "@storybook/blocks": "^7.4.6",
-    "@storybook/testing-library": "^0.2.2",
-    "@storybook/vue3": "^7.4.6",
-    "@storybook/vue3-vite": "^7.4.6",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "@vitejs/plugin-vue": "^4.2.3",
@@ -51,7 +44,6 @@
     "autoprefixer": "^10.4.16",
     "chromatic": "^7.3.0",
     "eslint": "^8.50.0",
-    "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-vue": "^9.17.0",
     "gh-pages": "^6.0.0",
     "path": "^0.12.7",
@@ -61,11 +53,11 @@
     "react-dom": "^18.2.0",
     "rollup-plugin-typescript2": "^0.36.0",
     "sass": "^1.68.0",
-    "storybook": "^7.4.6",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.6.0",
+    "vitepress": "^1.0.0-rc.22",
     "vue-tsc": "^1.8.5"
   }
 }
