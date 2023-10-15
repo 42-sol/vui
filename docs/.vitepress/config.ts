@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/vui/',
   title: "@42sol/vui",
   description: "An awesome Vue 3 UI library",
   themeConfig: {
