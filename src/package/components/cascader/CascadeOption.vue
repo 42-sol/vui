@@ -130,29 +130,29 @@ $el: 'vui-cascade-option';
 .#{$el} {
   @apply w-full transition-all cursor-pointer;
 
-  &--selected {
+  & .#{$el}--selected {
     & > .#{$el}__string {
       @apply bg-blue-200;
     }
   }
 
-  &__string {
+  & .#{$el}__string {
     @apply w-full flex justify-between items-center transition-all pr-1 hover:bg-gray-200;
   }
 
-  &__string-left {
+  & .#{$el}__string-left {
     @apply w-full flex justify-start items-center;
   }
 
-  &__next-btn {
+  & .#{$el}__next-btn {
     @apply flex-shrink-0;
   }
 
-  &__tree-btn-space {
+  & .#{$el}__tree-btn-space {
     @apply text-gray-500 text-xs w-6 h-6 flex-shrink-0;
   }
 
-  &__tree-btn {
+  & .#{$el}__tree-btn {
     @apply hover:bg-gray-300 flex justify-center items-center w-full h-full rotate-0;
 
     &--opened {

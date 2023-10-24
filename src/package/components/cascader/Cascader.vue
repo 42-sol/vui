@@ -318,10 +318,12 @@ function reformData(_selectedOptions: CascadeOptionObj[]): unknown {
 </script>
 
 <style scoped lang='scss'>
-.vui-cascader {
+$el: 'vui-cascader';
+
+.#{$el} {
   @apply relative;
 
-  &__dropdown {
+  & .#{$el}__dropdown {
     z-index: var(--vui-floating-z-index);
     @apply absolute top-0 left-2;
   }

@@ -84,26 +84,28 @@ function back() {
 </script>
 
 <style scoped lang='scss'>
-.vui-cascade {
+$el: 'vui-cascade';
+
+.#{$el} {
   @apply border bg-white overflow-hidden overflow-y-auto select-none absolute top-0;
 
-  &__scrollable {
+  & .#{$el}__scrollable {
     @apply relative;
   }
 
-  &__top-space {
+  & .#{$el}__top-space {
     @apply w-full;
   }
 
-  &__back-btn {
+  & .#{$el}__back-btn {
     @apply h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-gray-200;
   }
 
-  &__no-data {
+  & .#{$el}__no-data {
     @apply text-center p-2 text-gray-500;
   }
 
-  &__fog {
+  & .#{$el}__fog {
     background-color: var(--vui-fog);
     @apply absolute top-0 left-0 w-full h-full;
 

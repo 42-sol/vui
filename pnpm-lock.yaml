@@ -19,6 +19,9 @@ dependencies:
     version: 3.3.6(typescript@5.2.2)
 
 devDependencies:
+  '@42sol/vui':
+    specifier: 0.1.0-alpha.18
+    version: 0.1.0-alpha.18(typescript@5.2.2)
   '@iconify/json':
     specifier: ^2.2.132
     version: 2.2.132
@@ -63,6 +66,18 @@ devDependencies:
     version: 1.8.19(typescript@5.2.2)
 
 packages:
+
+  /@42sol/vui@0.1.0-alpha.18(typescript@5.2.2):
+    resolution: {integrity: sha512-jvD+2vReSdmjCSlWGyg8RmiZzPykkoL83ZyPYrIVBvjBE/0HwXBsZ+zv3+e6G3crTEUipcuqzgo9/clS3IGm6g==}
+    dependencies:
+      '@floating-ui/vue': 1.0.2(vue@3.3.6)
+      '@unocss/reset': 0.57.0
+      '@vueuse/core': 10.5.0(vue@3.3.6)
+      vue: 3.3.6(typescript@5.2.2)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
+    dev: true
 
   /@algolia/autocomplete-core@1.9.3(@algolia/client-search@4.20.0)(algoliasearch@4.20.0)(search-insights@2.9.0):
     resolution: {integrity: sha512-009HdfugtGCdC4JdXUbVJClA0q0zh24yyePn+KUGk3rP7j8FEe/m5Yo/z65gn6nP/cM39PxpzqKrL7A6fP6PPw==}
@@ -485,18 +500,15 @@ packages:
     resolution: {integrity: sha512-kK1h4m36DQ0UHGj5Ah4db7R0rHemTqqO0QLvUqi1/mUUp3LuAWbWxdxSIf/XsnH9VS6rRVPLJCncjRzUvyCLXg==}
     dependencies:
       '@floating-ui/utils': 0.1.6
-    dev: false
 
   /@floating-ui/dom@1.5.3:
     resolution: {integrity: sha512-ClAbQnEqJAKCJOEbbLo5IUlZHkNszqhuxS4fHAVxRPXPya6Ysf2G8KypnYcOTpx6I8xcgF9bbHb6g/2KpbV8qA==}
     dependencies:
       '@floating-ui/core': 1.5.0
       '@floating-ui/utils': 0.1.6
-    dev: false
 
   /@floating-ui/utils@0.1.6:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
-    dev: false
 
   /@floating-ui/vue@1.0.2(vue@3.3.6):
     resolution: {integrity: sha512-sImlAl9mAoCKZLNlwWz2P2ZMJIDlOEDXrRD6aD2sIHAka1LPC+nWtB+D3lPe7IE7FGWSbwBPTnlSdlABa3Fr0A==}
@@ -506,7 +518,6 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    dev: false
 
   /@iconify/json@2.2.132:
     resolution: {integrity: sha512-iRhfaUp7yQvez1lubMgjtBflpPXl2/2ItOoEybbA+u4Xv9sOJ3n7131DavvzhXqWiRu2NOhGpiGoqcU4RlOLnA==}

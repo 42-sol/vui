@@ -65,22 +65,24 @@ function onClear() {
 </script>
 
 <style scoped lang='scss'>
-.vui-cascade-input {
+$el: 'vui-cascade-input';
+
+.#{$el} {
   @apply border rounded-xl p-1 overflow-hidden flex items-center justify-between;
 
-  &--disabled {
+  & .#{$el}--disabled {
     @apply bg-gray-300 text-gray-500;
   }
   
-  &__label {
+  & .#{$el}__label {
     @apply flex-col h-8 overflow-x-auto whitespace-nowrap;
   }
 
-  &__placeholder {
+  & .#{$el}__placeholder {
     @apply text-gray-400 h-8 truncate;
   }
   
-  &__error {
+  & .#{$el}__error {
     color: var(--vui-error-color);
     @apply text-xs whitespace-nowrap truncate;
   }

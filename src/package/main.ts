@@ -1,5 +1,5 @@
 import 'uno.css';
-import '@unocss/reset/tailwind.css'
+import '@/package/styles/index.scss';
 
 import type { App } from 'vue';
 import {

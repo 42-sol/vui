@@ -35,6 +35,7 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@42sol/vui": "0.1.0-alpha.18",
     "@iconify/json": "^2.2.132",
     "@unocss/preset-attributify": "^0.57.0",
     "@unocss/transformer-directives": "^0.57.0",

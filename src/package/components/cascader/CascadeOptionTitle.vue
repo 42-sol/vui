@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class='vui-cascade-option-title'>
   <render-option></render-option>
   <div class="vui-cascade-option-title__default-title">{{ props.option.title }}</div>
 </div>
@@ -21,8 +21,10 @@ const RenderOption = () => {
 </script>
 
 <style scoped lang='scss'>
-.vui-cascade-option-title {
-  &__default-title {
+$el: 'vui-cascade-option-title';
+
+.#{$el} {
+  & .#{$el}__default-title {
     @apply truncate;
   }
 }
