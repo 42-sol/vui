@@ -20,8 +20,8 @@ dependencies:
 
 devDependencies:
   '@42sol/vui':
-    specifier: 0.1.0-alpha.18
-    version: 0.1.0-alpha.18(typescript@5.2.2)
+    specifier: 0.1.0-alpha.19
+    version: 0.1.0-alpha.19(typescript@5.2.2)
   '@iconify/json':
     specifier: ^2.2.132
     version: 2.2.132
@@ -67,8 +67,8 @@ devDependencies:
 
 packages:
 
-  /@42sol/vui@0.1.0-alpha.18(typescript@5.2.2):
-    resolution: {integrity: sha512-jvD+2vReSdmjCSlWGyg8RmiZzPykkoL83ZyPYrIVBvjBE/0HwXBsZ+zv3+e6G3crTEUipcuqzgo9/clS3IGm6g==}
+  /@42sol/vui@0.1.0-alpha.19(typescript@5.2.2):
+    resolution: {integrity: sha512-Y7MthFGXPAlSt2Gg/qaUoD7wm87a/j4+Z+X7JRBhCejFCZOqsQueiYBK0wjLn3juqFyRuUzNqf+l9ETD+Vz5JQ==}
     dependencies:
       '@floating-ui/vue': 1.0.2(vue@3.3.6)
       '@unocss/reset': 0.57.0

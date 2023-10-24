@@ -33,7 +33,7 @@ import {
   withModifiers
 } from "./chunk-IXZZPN2C.js";
 
-// node_modules/.pnpm/@42sol+vui@0.1.0-alpha.18_typescript@5.2.2/node_modules/@42sol/vui/dist/vui.es.js
+// node_modules/.pnpm/@42sol+vui@0.1.0-alpha.19_typescript@5.2.2/node_modules/@42sol/vui/dist/vui.es.js
 var Nt = "vui-button";
 var _e = defineComponent({
   __name: "Button",
@@ -56,15 +56,15 @@ var G = (t, n) => {
   return e;
 };
 var ye = G(_e, [["__scopeId", "data-v-02707fde"]]);
-function we(t) {
+function xe(t) {
   return getCurrentScope() ? (onScopeDispose(t), true) : false;
 }
 function qt(t) {
   return typeof t == "function" ? t() : unref(t);
 }
 var Gt = typeof window < "u" && typeof document < "u";
-var xe = Object.prototype.toString;
-var be = (t) => xe.call(t) === "[object Object]";
+var we = Object.prototype.toString;
+var be = (t) => we.call(t) === "[object Object]";
 var At = () => {
 };
 var Ce = ke();
@@ -99,7 +99,7 @@ function Et(...t) {
   ), r = () => {
     u(), s();
   };
-  return we(r), r;
+  return xe(r), r;
 }
 var Pt = false;
 function Oe(t, n, e = {}) {
@@ -160,13 +160,13 @@ var Ae = {
 function Mt(t, n, e) {
   return tt(t, St(n, e));
 }
-function wt(t, n) {
+function xt(t, n) {
   return typeof t == "function" ? t(n) : t;
 }
 function z(t) {
   return t.split("-")[0];
 }
-function xt(t) {
+function wt(t) {
   return t.split("-")[1];
 }
 function Jt(t) {
@@ -183,7 +183,7 @@ function Ut(t) {
 }
 function Se(t, n, e) {
   e === void 0 && (e = false);
-  const o = xt(t), i = Ut(t), c = Qt(i);
+  const o = wt(t), i = Ut(t), c = Qt(i);
   let s = i === "x" ? o === (e ? "end" : "start") ? "right" : "left" : o === "start" ? "bottom" : "top";
   return n.reference[c] > n.floating[c] && (s = vt(s)), [s, vt(s)];
 }
@@ -208,7 +208,7 @@ function Re(t, n, e) {
   }
 }
 function $e(t, n, e, o) {
-  const i = xt(t);
+  const i = wt(t);
   let c = Re(z(t), e === "start", o);
   return i && (c = c.map((s) => s + "-" + i), n && (c = c.concat(c.map(Tt)))), c;
 }
@@ -279,7 +279,7 @@ function Ft(t, n, e) {
         y: o.y
       };
   }
-  switch (xt(n)) {
+  switch (wt(n)) {
     case "start":
       f[s] -= d * (e && r ? -1 : 1);
       break;
@@ -306,7 +306,7 @@ var De = async (t, n, e) => {
   } = Ft(r, o, u), d = o, f = {}, p = 0;
   for (let v = 0; v < a.length; v++) {
     const {
-      name: x,
+      name: w,
       fn: b
     } = a[v], {
       x: k,
@@ -329,8 +329,8 @@ var De = async (t, n, e) => {
     });
     if (m = k ?? m, l = O ?? l, f = {
       ...f,
-      [x]: {
-        ...f[x],
+      [w]: {
+        ...f[w],
         ...A
       }
     }, E && p <= 50) {
@@ -369,8 +369,8 @@ async function Zt(t, n) {
     elementContext: l = "floating",
     altBoundary: d = false,
     padding: f = 0
-  } = wt(n, t), p = Le(f), x = a[d ? l === "floating" ? "reference" : "floating" : l], b = _t(await c.getClippingRect({
-    element: (e = await (c.isElement == null ? void 0 : c.isElement(x))) == null || e ? x : x.contextElement || await (c.getDocumentElement == null ? void 0 : c.getDocumentElement(a.floating)),
+  } = xt(n, t), p = Le(f), w = a[d ? l === "floating" ? "reference" : "floating" : l], b = _t(await c.getClippingRect({
+    element: (e = await (c.isElement == null ? void 0 : c.isElement(w))) == null || e ? w : w.contextElement || await (c.getDocumentElement == null ? void 0 : c.getDocumentElement(a.floating)),
     boundary: r,
     rootBoundary: m,
     strategy: u
@@ -416,13 +416,13 @@ var Ve = function(t) {
         fallbackStrategy: f = "bestFit",
         fallbackAxisSideDirection: p = "none",
         flipAlignment: v = true,
-        ...x
-      } = wt(t, n);
+        ...w
+      } = xt(t, n);
       if ((e = c.arrow) != null && e.alignmentOffset)
         return {};
       const b = z(i), k = z(a) === a, O = await (u.isRTL == null ? void 0 : u.isRTL(r.floating)), A = d || (k || !v ? [vt(a)] : Te(a));
       !d && p !== "none" && A.push(...$e(a, v, p, O));
-      const E = [a, ...A], it = await Zt(n, x), K = [];
+      const E = [a, ...A], it = await Zt(n, w), K = [];
       let P = ((o = c.flip) == null ? void 0 : o.overflows) || [];
       if (m && K.push(it[b]), l) {
         const y = Se(i, s, O);
@@ -473,7 +473,7 @@ async function Ie(t, n) {
     placement: e,
     platform: o,
     elements: i
-  } = t, c = await (o.isRTL == null ? void 0 : o.isRTL(i.floating)), s = z(e), a = xt(e), u = bt(e) === "y", r = ["left", "top"].includes(s) ? -1 : 1, m = c && u ? -1 : 1, l = wt(n, t);
+  } = t, c = await (o.isRTL == null ? void 0 : o.isRTL(i.floating)), s = z(e), a = wt(e), u = bt(e) === "y", r = ["left", "top"].includes(s) ? -1 : 1, m = c && u ? -1 : 1, l = xt(n, t);
   let {
     mainAxis: d,
     crossAxis: f,
@@ -526,11 +526,11 @@ var Pe = function(t) {
         mainAxis: c = true,
         crossAxis: s = false,
         limiter: a = {
-          fn: (x) => {
+          fn: (w) => {
             let {
               x: b,
               y: k
-            } = x;
+            } = w;
             return {
               x: b,
               y: k
@@ -538,17 +538,17 @@ var Pe = function(t) {
           }
         },
         ...u
-      } = wt(t, n), r = {
+      } = xt(t, n), r = {
         x: e,
         y: o
       }, m = await Zt(n, u), l = bt(z(i)), d = Jt(l);
       let f = r[d], p = r[l];
       if (c) {
-        const x = d === "y" ? "top" : "left", b = d === "y" ? "bottom" : "right", k = f + m[x], O = f - m[b];
+        const w = d === "y" ? "top" : "left", b = d === "y" ? "bottom" : "right", k = f + m[w], O = f - m[b];
         f = Mt(k, f, O);
       }
       if (s) {
-        const x = l === "y" ? "top" : "left", b = l === "y" ? "bottom" : "right", k = p + m[x], O = p - m[b];
+        const w = l === "y" ? "top" : "left", b = l === "y" ? "bottom" : "right", k = p + m[w], O = p - m[b];
         p = Mt(k, p, O);
       }
       const v = a.fn({
@@ -704,7 +704,7 @@ function ft(t, n, e, o) {
     const d = R(c), f = o && N(o) ? R(o) : o;
     let p = d.frameElement;
     for (; p && o && f !== d; ) {
-      const v = et(p), x = p.getBoundingClientRect(), b = B(p), k = x.left + (p.clientLeft + parseFloat(b.paddingLeft)) * v.x, O = x.top + (p.clientTop + parseFloat(b.paddingTop)) * v.y;
+      const v = et(p), w = p.getBoundingClientRect(), b = B(p), k = w.left + (p.clientLeft + parseFloat(b.paddingLeft)) * v.x, O = w.top + (p.clientTop + parseFloat(b.paddingTop)) * v.y;
       u *= v.x, r *= v.y, m *= v.x, l *= v.y, u += k, r += O, p = R(p).frameElement;
     }
   }
@@ -967,8 +967,9 @@ var nn = defineComponent({
   }
 });
 var on = G(nn, [["__scopeId", "data-v-ab0e6d66"]]);
-var sn = { class: "vui-cascade-option-title__default-title" };
-var cn = defineComponent({
+var sn = { class: "vui-cascade-option-title" };
+var cn = { class: "vui-cascade-option-title__default-title" };
+var an = defineComponent({
   __name: "CascadeOptionTitle",
   props: {
     option: {}
@@ -978,42 +979,42 @@ var cn = defineComponent({
       var o, i;
       return (i = (o = n.option).render) == null ? void 0 : i.call(o);
     };
-    return (o, i) => (openBlock(), createElementBlock("div", null, [
+    return (o, i) => (openBlock(), createElementBlock("div", sn, [
       createVNode(e),
-      createBaseVNode("div", sn, toDisplayString(n.option.title), 1)
+      createBaseVNode("div", cn, toDisplayString(n.option.title), 1)
     ]));
   }
 });
-var an = G(cn, [["__scopeId", "data-v-30eecdcd"]]);
-var Ot = (t) => (pushScopeId("data-v-194b05f5"), t = t(), popScopeId(), t);
-var ln = ["title"];
-var rn = { class: "vui-cascade-option__string" };
-var un = { class: "vui-cascade-option__string-left" };
-var dn = { class: "vui-cascade-option__tree-btn-space" };
-var fn = Ot(() => createBaseVNode("i", { "_i-bxs:right-arrow": "" }, null, -1));
-var pn = [
-  fn
+var ln = G(an, [["__scopeId", "data-v-6a87982d"]]);
+var Ot = (t) => (pushScopeId("data-v-f130216d"), t = t(), popScopeId(), t);
+var rn = ["title"];
+var un = { class: "vui-cascade-option__string" };
+var dn = { class: "vui-cascade-option__string-left" };
+var fn = { class: "vui-cascade-option__tree-btn-space" };
+var pn = Ot(() => createBaseVNode("i", { "_i-bxs:right-arrow": "" }, null, -1));
+var mn = [
+  pn
 ];
-var mn = {
+var hn = {
   key: 0,
   class: "vui-cascade-oprion__next-btn"
 };
-var hn = { key: 0 };
-var gn = Ot(() => createBaseVNode("i", { "_i-ep:arrow-right": "" }, null, -1));
-var vn = [
-  gn
+var gn = { key: 0 };
+var vn = Ot(() => createBaseVNode("i", { "_i-ep:arrow-right": "" }, null, -1));
+var _n = [
+  vn
 ];
-var _n = { key: 1 };
-var yn = Ot(() => createBaseVNode("i", { "_i-ep:loading": "" }, null, -1));
+var yn = { key: 1 };
+var xn = Ot(() => createBaseVNode("i", { "_i-ep:loading": "" }, null, -1));
 var wn = [
-  yn
+  xn
 ];
-var xn = { key: 2 };
-var bn = Ot(() => createBaseVNode("i", { "_i-ep:refresh": "" }, null, -1));
-var Cn = [
-  bn
+var bn = { key: 2 };
+var Cn = Ot(() => createBaseVNode("i", { "_i-ep:refresh": "" }, null, -1));
+var kn = [
+  Cn
 ];
-var kn = defineComponent({
+var On = defineComponent({
   __name: "CascadeOption",
   props: {
     option: {},
@@ -1023,7 +1024,7 @@ var kn = defineComponent({
   setup(t, { emit: n }) {
     const e = t, o = inject("selectedOptions"), i = n, c = ref(false), s = computed(() => !!e.option.options || !!e.option.getAsyncOptions), a = computed(() => !!e.option.children), u = computed(() => {
       var p;
-      const l = (p = o == null ? void 0 : o.value) == null ? void 0 : p.find((v, x) => x === e.cascade.id);
+      const l = (p = o == null ? void 0 : o.value) == null ? void 0 : p.find((v, w) => w === e.cascade.id);
       if (!l)
         return false;
       const d = l.id ?? l.value, f = e.option.id || e.option.value;
@@ -1044,21 +1045,21 @@ var kn = defineComponent({
         title: e.option.title,
         onClick: m
       }), [
-        createBaseVNode("div", rn, [
-          createBaseVNode("div", un, [
-            createBaseVNode("div", dn, [
+        createBaseVNode("div", un, [
+          createBaseVNode("div", dn, [
+            createBaseVNode("div", fn, [
               a.value ? (openBlock(), createElementBlock("div", {
                 key: 0,
                 class: normalizeClass(["vui-cascade-option__tree-btn", { "vui-cascade-option__tree-btn--opened": c.value }]),
                 onClick: d[0] || (d[0] = withModifiers((p) => c.value = !c.value, ["stop"]))
-              }, pn, 2)) : createCommentVNode("", true)
+              }, mn, 2)) : createCommentVNode("", true)
             ]),
-            createVNode(an, {
+            createVNode(ln, {
               option: e.option
             }, null, 8, ["option"])
           ]),
-          s.value ? (openBlock(), createElementBlock("div", mn, [
-            l.option.loadingState ? l.option.loadingState === "process" ? (openBlock(), createElementBlock("span", _n, wn)) : l.option.loadingState === "ready" ? (openBlock(), createElementBlock("span", xn, Cn)) : createCommentVNode("", true) : (openBlock(), createElementBlock("span", hn, vn))
+          s.value ? (openBlock(), createElementBlock("div", hn, [
+            l.option.loadingState ? l.option.loadingState === "process" ? (openBlock(), createElementBlock("span", yn, wn)) : l.option.loadingState === "ready" ? (openBlock(), createElementBlock("span", bn, kn)) : createCommentVNode("", true) : (openBlock(), createElementBlock("span", gn, _n))
           ])) : createCommentVNode("", true)
         ]),
         a.value ? (openBlock(), createBlock(on, {
@@ -1076,33 +1077,33 @@ var kn = defineComponent({
           ]),
           _: 1
         }, 8, ["expanded", "option"])) : createCommentVNode("", true)
-      ], 16, ln);
+      ], 16, rn);
     };
   }
 });
-var On = G(kn, [["__scopeId", "data-v-194b05f5"]]);
-var En = (t) => (pushScopeId("data-v-258c4c7c"), t = t(), popScopeId(), t);
-var An = { class: "vui-cascade__scrollable" };
-var Sn = {
+var En = G(On, [["__scopeId", "data-v-f130216d"]]);
+var An = (t) => (pushScopeId("data-v-2aa22e28"), t = t(), popScopeId(), t);
+var Sn = { class: "vui-cascade__scrollable" };
+var Tn = {
   key: 0,
   class: "vui-cascade__top-space"
 };
-var Tn = En(() => createBaseVNode("i", { "_i-ep:back": "" }, null, -1));
-var Rn = [
-  Tn
+var Rn = An(() => createBaseVNode("i", { "_i-ep:back": "" }, null, -1));
+var $n = [
+  Rn
 ];
-var $n = { class: "flex items-center justify-center" };
-var Bn = { key: 0 };
-var Ln = { key: 1 };
-var Dn = {
+var Bn = { class: "flex items-center justify-center" };
+var Ln = { key: 0 };
+var Dn = { key: 1 };
+var Vn = {
   key: 0,
   class: "vui-cascade__no-data"
 };
-var Vn = {
+var In = {
   key: 0,
   class: "vui-cascade__fog"
 };
-var In = defineComponent({
+var Nn = defineComponent({
   __name: "Cascade",
   props: {
     cascade: {},
@@ -1125,32 +1126,32 @@ var In = defineComponent({
       o("on-back");
     }
     return (a, u) => (openBlock(), createElementBlock("div", mergeProps({ class: "vui-cascade" }, i.value), [
-      createBaseVNode("div", An, [
-        e.canBack ? (openBlock(), createElementBlock("div", Sn, [
+      createBaseVNode("div", Sn, [
+        e.canBack ? (openBlock(), createElementBlock("div", Tn, [
           renderSlot(a.$slots, "backBtn", normalizeProps(guardReactiveProps({ back: s })), () => [
             createBaseVNode("div", {
               class: "vui-cascade__back-btn",
               onClick: s
-            }, Rn)
+            }, $n)
           ], true),
-          createBaseVNode("div", $n, [
-            a.cascade.loadStatus === "process" ? (openBlock(), createElementBlock("span", Bn, "Loading...")) : createCommentVNode("", true),
-            a.cascade.loadStatus === "error" ? (openBlock(), createElementBlock("span", Ln, "Data hasn't been loaded")) : createCommentVNode("", true)
+          createBaseVNode("div", Bn, [
+            a.cascade.loadStatus === "process" ? (openBlock(), createElementBlock("span", Ln, "Loading...")) : createCommentVNode("", true),
+            a.cascade.loadStatus === "error" ? (openBlock(), createElementBlock("span", Dn, "Data hasn't been loaded")) : createCommentVNode("", true)
           ])
         ])) : createCommentVNode("", true),
         renderSlot(a.$slots, "beforeOptions", normalizeProps(guardReactiveProps({ cascade: e.cascade })), void 0, true),
-        (openBlock(true), createElementBlock(Fragment, null, renderList(a.cascade.options, (r) => (openBlock(), createBlock(On, {
+        (openBlock(true), createElementBlock(Fragment, null, renderList(a.cascade.options, (r) => (openBlock(), createBlock(En, {
           key: r.id || r.value,
           cascade: a.cascade,
           option: r,
           onOnClick: c
         }, null, 8, ["cascade", "option"]))), 128)),
         renderSlot(a.$slots, "cascadeNoData", normalizeProps(guardReactiveProps({ cascade: e.cascade })), () => [
-          a.cascade.options.length ? createCommentVNode("", true) : (openBlock(), createElementBlock("div", Dn, toDisplayString(e.noDataText || "no data"), 1))
+          a.cascade.options.length ? createCommentVNode("", true) : (openBlock(), createElementBlock("div", Vn, toDisplayString(e.noDataText || "no data"), 1))
         ], true),
         createVNode(Transition, { class: "vui-cascade__fog-transition" }, {
           default: withCtx(() => [
-            e.fog ? (openBlock(), createElementBlock("div", Vn)) : createCommentVNode("", true)
+            e.fog ? (openBlock(), createElementBlock("div", In)) : createCommentVNode("", true)
           ]),
           _: 1
         })
@@ -1158,23 +1159,23 @@ var In = defineComponent({
     ], 16));
   }
 });
-var Nn = G(In, [["__scopeId", "data-v-258c4c7c"]]);
-var Pn = (t) => (pushScopeId("data-v-a890c603"), t = t(), popScopeId(), t);
-var Mn = { class: "vui-cascade-input__label" };
-var Fn = { key: 0 };
-var Wn = {
+var Pn = G(Nn, [["__scopeId", "data-v-2aa22e28"]]);
+var Mn = (t) => (pushScopeId("data-v-81b94dc0"), t = t(), popScopeId(), t);
+var Fn = { class: "vui-cascade-input__label" };
+var Wn = { key: 0 };
+var Hn = {
   key: 1,
   class: "vuscade-input__placeholder"
 };
-var Hn = Pn(() => createBaseVNode("div", { "_i-material-symbols:close": "" }, null, -1));
-var jn = [
-  Hn
+var jn = Mn(() => createBaseVNode("div", { "_i-material-symbols:close": "" }, null, -1));
+var Xn = [
+  jn
 ];
-var Xn = {
+var Yn = {
   key: 0,
   class: "vui-cascade-input__error"
 };
-var Yn = defineComponent({
+var zn = defineComponent({
   __name: "CascadeInput",
   props: {
     values: {},
@@ -1197,21 +1198,21 @@ var Yn = defineComponent({
     }
     return (u, r) => (openBlock(), createElementBlock(Fragment, null, [
       createBaseVNode("div", mergeProps({ class: "vui-cascade-input" }, c.value, { onClick: s }), [
-        createBaseVNode("div", Mn, [
-          i.value ? (openBlock(), createElementBlock("span", Fn, toDisplayString(i.value), 1)) : (openBlock(), createElementBlock("div", Wn, toDisplayString(e.placeholder), 1))
+        createBaseVNode("div", Fn, [
+          i.value ? (openBlock(), createElementBlock("span", Wn, toDisplayString(i.value), 1)) : (openBlock(), createElementBlock("div", Hn, toDisplayString(e.placeholder), 1))
         ]),
         e.clearable && e.values.length ? (openBlock(), createElementBlock("div", {
           key: 0,
           class: "flex-shrink-0 rounded p-1 hover:bg-gray-300",
           onClick: a
-        }, jn)) : createCommentVNode("", true)
+        }, Xn)) : createCommentVNode("", true)
       ], 16),
-      u.errorMsg ? (openBlock(), createElementBlock("div", Xn, toDisplayString(u.errorMsg), 1)) : createCommentVNode("", true)
+      u.errorMsg ? (openBlock(), createElementBlock("div", Yn, toDisplayString(u.errorMsg), 1)) : createCommentVNode("", true)
     ], 64));
   }
 });
-var zn = G(Yn, [["__scopeId", "data-v-a890c603"]]);
-var qn = defineComponent({
+var qn = G(zn, [["__scopeId", "data-v-81b94dc0"]]);
+var Gn = defineComponent({
   __name: "Cascader",
   props: {
     modelValue: {},
@@ -1243,7 +1244,7 @@ var qn = defineComponent({
       var _;
       return ((_ = r.value[r.value.length - 1]) == null ? void 0 : _.id) === h.id;
     };
-    function x(h) {
+    function w(h) {
       h && e.disabled || (a.value = h, h || (l.value = P(e.modelValue || [])));
     }
     onMounted(() => {
@@ -1262,15 +1263,15 @@ var qn = defineComponent({
       });
     });
     function b() {
-      x(true);
+      w(true);
     }
     function k() {
-      x(false);
+      w(false);
     }
     function O({ cascade: h, optionParams: _ }) {
       if (l.value = l.value.slice(0, h.id), l.value[h.id] = _.option, _.last) {
         o("update:modelValue", st(l.value)), nextTick(() => {
-          x(false);
+          w(false);
         });
         return;
       }
@@ -1337,7 +1338,7 @@ var qn = defineComponent({
         ref: c,
         class: "vue-cascader__input-wrapper"
       }, [
-        createVNode(zn, {
+        createVNode(qn, {
           values: p.value,
           separator: e.separator,
           placeholder: e.placeholder,
@@ -1358,7 +1359,7 @@ var qn = defineComponent({
           name: "vui-cascader-transition"
         }, {
           default: withCtx(() => [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(m.value, (y, D) => (openBlock(), createBlock(Nn, {
+            (openBlock(true), createElementBlock(Fragment, null, renderList(m.value, (y, D) => (openBlock(), createBlock(Pn, {
               key: y.id,
               cascade: y,
               padding: D,
@@ -1384,16 +1385,16 @@ var qn = defineComponent({
     ], 512));
   }
 });
-var Gn = G(qn, [["__scopeId", "data-v-416cbfb6"]]);
-var Jn = {
+var Kn = G(Gn, [["__scopeId", "data-v-edaeae71"]]);
+var Qn = {
   install: (t) => {
-    t.component("VuiButton", ye), t.component("VuiCascader", Gn);
+    t.component("VuiButton", ye), t.component("VuiCascader", Kn);
   }
 };
 export {
   ye as VuiButton,
-  Gn as VuiCascader,
-  Jn as default,
+  Kn as VuiCascader,
+  Qn as default,
   ot as styling
 };
 //# sourceMappingURL=@42sol_vui.js.map
