@@ -87,4 +87,16 @@ $el: 'vui-cascade-input';
     @apply text-xs whitespace-nowrap truncate;
   }
 }
+
+// html.dark {
+//   .#{$el} {
+//     & .#{$el}--disabled {
+//       @apply bg-gray-500 text-gray-500;
+//     }
+
+//     & .#{$el}__placeholder {
+//       @apply text-gray-400 h-8 truncate;
+//     }
+//   }
+// }
 </style>

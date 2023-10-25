@@ -22,15 +22,13 @@ v-bind='blockStyling'
     </div>
 
     <div v-if='hasOwnOptions' class="vui-cascade-oprion__next-btn">
-      <span v-if='!option.loadingState'>
-        <i _i-ep:arrow-right></i>
-      </span>
-      <span v-else-if='option.loadingState === "process"'>
+      <i _i-ep:arrow-right></i>
+      <!-- <span v-else-if='option.loadStatus === "process"'>
         <i _i-ep:loading></i>
       </span>
-      <span v-else-if='option.loadingState === "ready"'>
+      <span v-else-if='option.loadStatus === "success" || option.loadStatus === "error"'>
         <i _i-ep:refresh></i>
-      </span>
+      </span> -->
     </div>
   </div>
 

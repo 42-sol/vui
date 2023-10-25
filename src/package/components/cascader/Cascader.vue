@@ -229,7 +229,14 @@ function createCascadeFrom(option: CascadeOptionObj, id: number) {
     option.getAsyncOptions()
       .then((res: CascadeOptionObj[]) => {
         cascade.loadStatus = 'success';
-        cascade.options.push(...res);
+        res.forEach((item) => {
+          console.log('options: ---', cascade.options);
+          const alreadyExisted = cascade.options.findIndex(_ => _.id ? _.id === item.id : _.value === item.value);
+          if (alreadyExisted >= 0) {
+            cascade.options.splice(alreadyExisted, 1);
+          }
+          cascade.options.push(item);
+        });
       })
       .catch(() => {
         cascade.loadStatus = 'error';

@@ -12,7 +12,7 @@ export default defineConfig({
           return path.resolve(path.dirname('./'), 'src');
         })()
       }
-    }
+    },
   },
   title: "@42sol/vui",
   description: "An awesome Vue 3 UI library",

@@ -8,7 +8,7 @@
         </div>
       </slot>
 
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center w-full">
         <span v-if='cascade.loadStatus === "process"'>Loading...</span>
         <span v-if='cascade.loadStatus === "error"'>Data hasn't been loaded</span>
       </div>
@@ -89,23 +89,23 @@ $el: 'vui-cascade';
 .#{$el} {
   @apply border bg-white overflow-hidden overflow-y-auto select-none absolute top-0;
 
-  & .#{$el}__scrollable {
+  &__scrollable {
     @apply relative;
   }
 
-  & .#{$el}__top-space {
+  &__top-space {
     @apply w-full;
   }
 
-  & .#{$el}__back-btn {
+  &__back-btn {
     @apply h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-gray-200;
   }
 
-  & .#{$el}__no-data {
+  &__no-data {
     @apply text-center p-2 text-gray-500;
   }
 
-  & .#{$el}__fog {
+  &__fog {
     background-color: var(--vui-fog);
     @apply absolute top-0 left-0 w-full h-full;
 

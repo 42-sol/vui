@@ -31,10 +31,10 @@ import {
   watch,
   withCtx,
   withModifiers
-} from "./chunk-IXZZPN2C.js";
+} from "./chunk-TQFIIZRC.js";
 
-// node_modules/.pnpm/@42sol+vui@0.1.0-alpha.19_typescript@5.2.2/node_modules/@42sol/vui/dist/vui.es.js
-var Nt = "vui-button";
+// node_modules/@42sol/vui/dist/vui.es.js
+var It = "vui-button";
 var _e = defineComponent({
   __name: "Button",
   props: {
@@ -42,7 +42,7 @@ var _e = defineComponent({
   },
   setup(t) {
     const n = t, e = computed(() => ot(({ classes: o }) => {
-      o.push(Nt, `${Nt}--${n.type}`);
+      o.push(It, `${It}--${n.type}`);
     }));
     return (o, i) => (openBlock(), createElementBlock("button", normalizeProps(guardReactiveProps(e.value)), [
       renderSlot(o.$slots, "default", {}, void 0, true)
@@ -59,34 +59,34 @@ var ye = G(_e, [["__scopeId", "data-v-02707fde"]]);
 function xe(t) {
   return getCurrentScope() ? (onScopeDispose(t), true) : false;
 }
-function qt(t) {
+function zt(t) {
   return typeof t == "function" ? t() : unref(t);
 }
-var Gt = typeof window < "u" && typeof document < "u";
+var qt = typeof window < "u" && typeof document < "u";
 var we = Object.prototype.toString;
 var be = (t) => we.call(t) === "[object Object]";
-var At = () => {
+var Et = () => {
 };
 var Ce = ke();
 function ke() {
   var t;
-  return Gt && ((t = window == null ? void 0 : window.navigator) == null ? void 0 : t.userAgent) && /iP(ad|hone|od)/.test(window.navigator.userAgent);
+  return qt && ((t = window == null ? void 0 : window.navigator) == null ? void 0 : t.userAgent) && /iP(ad|hone|od)/.test(window.navigator.userAgent);
 }
 function at(t) {
   var n;
-  const e = qt(t);
+  const e = zt(t);
   return (n = e == null ? void 0 : e.$el) != null ? n : e;
 }
-var Kt = Gt ? window : void 0;
-function Et(...t) {
+var Gt = qt ? window : void 0;
+function Ot(...t) {
   let n, e, o, i;
-  if (typeof t[0] == "string" || Array.isArray(t[0]) ? ([e, o, i] = t, n = Kt) : [n, e, o, i] = t, !n)
-    return At;
+  if (typeof t[0] == "string" || Array.isArray(t[0]) ? ([e, o, i] = t, n = Gt) : [n, e, o, i] = t, !n)
+    return Et;
   Array.isArray(e) || (e = [e]), Array.isArray(o) || (o = [o]);
   const c = [], s = () => {
     c.forEach((m) => m()), c.length = 0;
   }, a = (m, l, d, f) => (m.addEventListener(l, d, f), () => m.removeEventListener(l, d, f)), u = watch(
-    () => [at(n), qt(i)],
+    () => [at(n), zt(i)],
     ([m, l]) => {
       if (s(), !m)
         return;
@@ -101,12 +101,12 @@ function Et(...t) {
   };
   return xe(r), r;
 }
-var Pt = false;
+var Nt = false;
 function Oe(t, n, e = {}) {
-  const { window: o = Kt, ignore: i = [], capture: c = true, detectIframe: s = false } = e;
+  const { window: o = Gt, ignore: i = [], capture: c = true, detectIframe: s = false } = e;
   if (!o)
     return;
-  Ce && !Pt && (Pt = true, Array.from(o.document.body.children).forEach((d) => d.addEventListener("click", At)), o.document.documentElement.addEventListener("click", At));
+  Ce && !Nt && (Nt = true, Array.from(o.document.body.children).forEach((d) => d.addEventListener("click", Et)), o.document.documentElement.addEventListener("click", Et));
   let a = true;
   const u = (d) => i.some((f) => {
     if (typeof f == "string")
@@ -116,7 +116,7 @@ function Oe(t, n, e = {}) {
       return p && (d.target === p || d.composedPath().includes(p));
     }
   }), m = [
-    Et(o, "click", (d) => {
+    Ot(o, "click", (d) => {
       const f = at(t);
       if (!(!f || f === d.target || d.composedPath().includes(f))) {
         if (d.detail === 0 && (a = !u(d)), !a) {
@@ -126,11 +126,11 @@ function Oe(t, n, e = {}) {
         n(d);
       }
     }, { passive: true, capture: c }),
-    Et(o, "pointerdown", (d) => {
+    Ot(o, "pointerdown", (d) => {
       const f = at(t);
       f && (a = !d.composedPath().includes(f) && !u(d));
     }, { passive: true }),
-    s && Et(o, "blur", (d) => {
+    s && Ot(o, "blur", (d) => {
       setTimeout(() => {
         var f;
         const p = at(t);
@@ -140,7 +140,7 @@ function Oe(t, n, e = {}) {
   ].filter(Boolean);
   return () => m.forEach((d) => d());
 }
-var St = Math.min;
+var At = Math.min;
 var tt = Math.max;
 var gt = Math.round;
 var H = (t) => ({
@@ -157,8 +157,8 @@ var Ae = {
   start: "end",
   end: "start"
 };
-function Mt(t, n, e) {
-  return tt(t, St(n, e));
+function Pt(t, n, e) {
+  return tt(t, At(n, e));
 }
 function xt(t, n) {
   return typeof t == "function" ? t(n) : t;
@@ -169,29 +169,29 @@ function z(t) {
 function wt(t) {
   return t.split("-")[1];
 }
-function Jt(t) {
+function Kt(t) {
   return t === "x" ? "y" : "x";
 }
-function Qt(t) {
+function Jt(t) {
   return t === "y" ? "height" : "width";
 }
 function bt(t) {
   return ["top", "bottom"].includes(z(t)) ? "y" : "x";
 }
-function Ut(t) {
-  return Jt(bt(t));
+function Qt(t) {
+  return Kt(bt(t));
 }
 function Se(t, n, e) {
   e === void 0 && (e = false);
-  const o = wt(t), i = Ut(t), c = Qt(i);
+  const o = wt(t), i = Qt(t), c = Jt(i);
   let s = i === "x" ? o === (e ? "end" : "start") ? "right" : "left" : o === "start" ? "bottom" : "top";
   return n.reference[c] > n.floating[c] && (s = vt(s)), [s, vt(s)];
 }
 function Te(t) {
   const n = vt(t);
-  return [Tt(t), n, Tt(n)];
+  return [St(t), n, St(n)];
 }
-function Tt(t) {
+function St(t) {
   return t.replace(/start|end/g, (n) => Ae[n]);
 }
 function Re(t, n, e) {
@@ -210,7 +210,7 @@ function Re(t, n, e) {
 function $e(t, n, e, o) {
   const i = wt(t);
   let c = Re(z(t), e === "start", o);
-  return i && (c = c.map((s) => s + "-" + i), n && (c = c.concat(c.map(Tt)))), c;
+  return i && (c = c.map((s) => s + "-" + i), n && (c = c.concat(c.map(St)))), c;
 }
 function vt(t) {
   return t.replace(/left|right|bottom|top/g, (n) => Ee[n]);
@@ -241,12 +241,12 @@ function _t(t) {
     bottom: t.y + t.height
   };
 }
-function Ft(t, n, e) {
+function Mt(t, n, e) {
   let {
     reference: o,
     floating: i
   } = t;
-  const c = bt(n), s = Ut(n), a = Qt(s), u = z(n), r = c === "y", m = o.x + o.width / 2 - i.width / 2, l = o.y + o.height / 2 - i.height / 2, d = o[a] / 2 - i[a] / 2;
+  const c = bt(n), s = Qt(n), a = Jt(s), u = z(n), r = c === "y", m = o.x + o.width / 2 - i.width / 2, l = o.y + o.height / 2 - i.height / 2, d = o[a] / 2 - i[a] / 2;
   let f;
   switch (u) {
     case "top":
@@ -303,16 +303,16 @@ var De = async (t, n, e) => {
   }), {
     x: m,
     y: l
-  } = Ft(r, o, u), d = o, f = {}, p = 0;
+  } = Mt(r, o, u), d = o, f = {}, p = 0;
   for (let v = 0; v < a.length; v++) {
     const {
-      name: w,
+      name: x,
       fn: b
     } = a[v], {
-      x: k,
-      y: O,
-      data: A,
-      reset: E
+      x: C,
+      y: k,
+      data: T,
+      reset: O
     } = await b({
       x: m,
       y: l,
@@ -327,21 +327,21 @@ var De = async (t, n, e) => {
         floating: n
       }
     });
-    if (m = k ?? m, l = O ?? l, f = {
+    if (m = C ?? m, l = k ?? l, f = {
       ...f,
-      [w]: {
-        ...f[w],
-        ...A
+      [x]: {
+        ...f[x],
+        ...T
       }
-    }, E && p <= 50) {
-      p++, typeof E == "object" && (E.placement && (d = E.placement), E.rects && (r = E.rects === true ? await s.getElementRects({
+    }, O && p <= 50) {
+      p++, typeof O == "object" && (O.placement && (d = O.placement), O.rects && (r = O.rects === true ? await s.getElementRects({
         reference: t,
         floating: n,
         strategy: i
-      }) : E.rects), {
+      }) : O.rects), {
         x: m,
         y: l
-      } = Ft(r, d, u)), v = -1;
+      } = Mt(r, d, u)), v = -1;
       continue;
     }
   }
@@ -353,7 +353,7 @@ var De = async (t, n, e) => {
     middlewareData: f
   };
 };
-async function Zt(t, n) {
+async function Ut(t, n) {
   var e;
   n === void 0 && (n = {});
   const {
@@ -369,31 +369,31 @@ async function Zt(t, n) {
     elementContext: l = "floating",
     altBoundary: d = false,
     padding: f = 0
-  } = xt(n, t), p = Le(f), w = a[d ? l === "floating" ? "reference" : "floating" : l], b = _t(await c.getClippingRect({
-    element: (e = await (c.isElement == null ? void 0 : c.isElement(w))) == null || e ? w : w.contextElement || await (c.getDocumentElement == null ? void 0 : c.getDocumentElement(a.floating)),
+  } = xt(n, t), p = Le(f), x = a[d ? l === "floating" ? "reference" : "floating" : l], b = _t(await c.getClippingRect({
+    element: (e = await (c.isElement == null ? void 0 : c.isElement(x))) == null || e ? x : x.contextElement || await (c.getDocumentElement == null ? void 0 : c.getDocumentElement(a.floating)),
     boundary: r,
     rootBoundary: m,
     strategy: u
-  })), k = l === "floating" ? {
+  })), C = l === "floating" ? {
     ...s.floating,
     x: o,
     y: i
-  } : s.reference, O = await (c.getOffsetParent == null ? void 0 : c.getOffsetParent(a.floating)), A = await (c.isElement == null ? void 0 : c.isElement(O)) ? await (c.getScale == null ? void 0 : c.getScale(O)) || {
+  } : s.reference, k = await (c.getOffsetParent == null ? void 0 : c.getOffsetParent(a.floating)), T = await (c.isElement == null ? void 0 : c.isElement(k)) ? await (c.getScale == null ? void 0 : c.getScale(k)) || {
     x: 1,
     y: 1
   } : {
     x: 1,
     y: 1
-  }, E = _t(c.convertOffsetParentRelativeRectToViewportRelativeRect ? await c.convertOffsetParentRelativeRectToViewportRelativeRect({
-    rect: k,
-    offsetParent: O,
+  }, O = _t(c.convertOffsetParentRelativeRectToViewportRelativeRect ? await c.convertOffsetParentRelativeRectToViewportRelativeRect({
+    rect: C,
+    offsetParent: k,
     strategy: u
-  }) : k);
+  }) : C);
   return {
-    top: (b.top - E.top + p.top) / A.y,
-    bottom: (E.bottom - b.bottom + p.bottom) / A.y,
-    left: (b.left - E.left + p.left) / A.x,
-    right: (E.right - b.right + p.right) / A.x
+    top: (b.top - O.top + p.top) / T.y,
+    bottom: (O.bottom - b.bottom + p.bottom) / T.y,
+    left: (b.left - O.left + p.left) / T.x,
+    right: (O.right - b.right + p.right) / T.x
   };
 }
 var Ve = function(t) {
@@ -416,51 +416,51 @@ var Ve = function(t) {
         fallbackStrategy: f = "bestFit",
         fallbackAxisSideDirection: p = "none",
         flipAlignment: v = true,
-        ...w
+        ...x
       } = xt(t, n);
       if ((e = c.arrow) != null && e.alignmentOffset)
         return {};
-      const b = z(i), k = z(a) === a, O = await (u.isRTL == null ? void 0 : u.isRTL(r.floating)), A = d || (k || !v ? [vt(a)] : Te(a));
-      !d && p !== "none" && A.push(...$e(a, v, p, O));
-      const E = [a, ...A], it = await Zt(n, w), K = [];
-      let P = ((o = c.flip) == null ? void 0 : o.overflows) || [];
+      const b = z(i), C = z(a) === a, k = await (u.isRTL == null ? void 0 : u.isRTL(r.floating)), T = d || (C || !v ? [vt(a)] : Te(a));
+      !d && p !== "none" && T.push(...$e(a, v, p, k));
+      const O = [a, ...T], it = await Ut(n, x), K = [];
+      let M = ((o = c.flip) == null ? void 0 : o.overflows) || [];
       if (m && K.push(it[b]), l) {
-        const y = Se(i, s, O);
-        K.push(it[y[0]], it[y[1]]);
+        const g = Se(i, s, k);
+        K.push(it[g[0]], it[g[1]]);
       }
-      if (P = [...P, {
+      if (M = [...M, {
         placement: i,
         overflows: K
-      }], !K.every((y) => y <= 0)) {
+      }], !K.every((g) => g <= 0)) {
         var st, h;
-        const y = (((st = c.flip) == null ? void 0 : st.index) || 0) + 1, D = E[y];
+        const g = (((st = c.flip) == null ? void 0 : st.index) || 0) + 1, D = O[g];
         if (D)
           return {
             data: {
-              index: y,
-              overflows: P
+              index: g,
+              overflows: M
             },
             reset: {
               placement: D
             }
           };
-        let $ = (h = P.filter((S) => S.overflows[0] <= 0).sort((S, M) => S.overflows[1] - M.overflows[1])[0]) == null ? void 0 : h.placement;
-        if (!$)
+        let A = (h = M.filter((E) => E.overflows[0] <= 0).sort((E, B) => E.overflows[1] - B.overflows[1])[0]) == null ? void 0 : h.placement;
+        if (!A)
           switch (f) {
             case "bestFit": {
               var _;
-              const S = (_ = P.map((M) => [M.placement, M.overflows.filter((F) => F > 0).reduce((F, J) => F + J, 0)]).sort((M, F) => M[1] - F[1])[0]) == null ? void 0 : _[0];
-              S && ($ = S);
+              const E = (_ = M.map((B) => [B.placement, B.overflows.filter((F) => F > 0).reduce((F, J) => F + J, 0)]).sort((B, F) => B[1] - F[1])[0]) == null ? void 0 : _[0];
+              E && (A = E);
               break;
             }
             case "initialPlacement":
-              $ = a;
+              A = a;
               break;
           }
-        if (i !== $)
+        if (i !== A)
           return {
             reset: {
-              placement: $
+              placement: A
             }
           };
       }
@@ -526,14 +526,14 @@ var Pe = function(t) {
         mainAxis: c = true,
         crossAxis: s = false,
         limiter: a = {
-          fn: (w) => {
+          fn: (x) => {
             let {
               x: b,
-              y: k
-            } = w;
+              y: C
+            } = x;
             return {
               x: b,
-              y: k
+              y: C
             };
           }
         },
@@ -541,15 +541,15 @@ var Pe = function(t) {
       } = xt(t, n), r = {
         x: e,
         y: o
-      }, m = await Zt(n, u), l = bt(z(i)), d = Jt(l);
+      }, m = await Ut(n, u), l = bt(z(i)), d = Kt(l);
       let f = r[d], p = r[l];
       if (c) {
-        const w = d === "y" ? "top" : "left", b = d === "y" ? "bottom" : "right", k = f + m[w], O = f - m[b];
-        f = Mt(k, f, O);
+        const x = d === "y" ? "top" : "left", b = d === "y" ? "bottom" : "right", C = f + m[x], k = f - m[b];
+        f = Pt(C, f, k);
       }
       if (s) {
-        const w = l === "y" ? "top" : "left", b = l === "y" ? "bottom" : "right", k = p + m[w], O = p - m[b];
-        p = Mt(k, p, O);
+        const x = l === "y" ? "top" : "left", b = l === "y" ? "bottom" : "right", C = p + m[x], k = p - m[b];
+        p = Pt(C, p, k);
       }
       const v = a.fn({
         ...n,
@@ -567,27 +567,27 @@ var Pe = function(t) {
   };
 };
 function j(t) {
-  return te(t) ? (t.nodeName || "").toLowerCase() : "#document";
+  return Zt(t) ? (t.nodeName || "").toLowerCase() : "#document";
 }
-function R(t) {
+function $(t) {
   var n;
   return (t == null || (n = t.ownerDocument) == null ? void 0 : n.defaultView) || window;
 }
 function X(t) {
   var n;
-  return (n = (te(t) ? t.ownerDocument : t.document) || window.document) == null ? void 0 : n.documentElement;
+  return (n = (Zt(t) ? t.ownerDocument : t.document) || window.document) == null ? void 0 : n.documentElement;
 }
-function te(t) {
-  return t instanceof Node || t instanceof R(t).Node;
+function Zt(t) {
+  return t instanceof Node || t instanceof $(t).Node;
+}
+function P(t) {
+  return t instanceof Element || t instanceof $(t).Element;
 }
 function N(t) {
-  return t instanceof Element || t instanceof R(t).Element;
+  return t instanceof HTMLElement || t instanceof $(t).HTMLElement;
 }
-function I(t) {
-  return t instanceof HTMLElement || t instanceof R(t).HTMLElement;
-}
-function Wt(t) {
-  return typeof ShadowRoot > "u" ? false : t instanceof ShadowRoot || t instanceof R(t).ShadowRoot;
+function Ft(t) {
+  return typeof ShadowRoot > "u" ? false : t instanceof ShadowRoot || t instanceof $(t).ShadowRoot;
 }
 function pt(t) {
   const {
@@ -595,36 +595,36 @@ function pt(t) {
     overflowX: e,
     overflowY: o,
     display: i
-  } = B(t);
+  } = L(t);
   return /auto|scroll|overlay|hidden|clip/.test(n + o + e) && !["inline", "contents"].includes(i);
 }
 function Me(t) {
   return ["table", "td", "th"].includes(j(t));
 }
-function Dt(t) {
-  const n = Vt(), e = B(t);
+function Lt(t) {
+  const n = Dt(), e = L(t);
   return e.transform !== "none" || e.perspective !== "none" || (e.containerType ? e.containerType !== "normal" : false) || !n && (e.backdropFilter ? e.backdropFilter !== "none" : false) || !n && (e.filter ? e.filter !== "none" : false) || ["transform", "perspective", "filter"].some((o) => (e.willChange || "").includes(o)) || ["paint", "layout", "strict", "content"].some((o) => (e.contain || "").includes(o));
 }
 function Fe(t) {
   let n = nt(t);
-  for (; I(n) && !Ct(n); ) {
-    if (Dt(n))
+  for (; N(n) && !Ct(n); ) {
+    if (Lt(n))
       return n;
     n = nt(n);
   }
   return null;
 }
-function Vt() {
+function Dt() {
   return typeof CSS > "u" || !CSS.supports ? false : CSS.supports("-webkit-backdrop-filter", "none");
 }
 function Ct(t) {
   return ["html", "body", "#document"].includes(j(t));
 }
-function B(t) {
-  return R(t).getComputedStyle(t);
+function L(t) {
+  return $(t).getComputedStyle(t);
 }
 function kt(t) {
-  return N(t) ? {
+  return P(t) ? {
     scrollLeft: t.scrollLeft,
     scrollTop: t.scrollTop
   } : {
@@ -639,43 +639,43 @@ function nt(t) {
     // Step into the shadow DOM of the parent of a slotted node.
     t.assignedSlot || // DOM Element detected.
     t.parentNode || // ShadowRoot detected.
-    Wt(t) && t.host || // Fallback.
+    Ft(t) && t.host || // Fallback.
     X(t)
   );
-  return Wt(n) ? n.host : n;
+  return Ft(n) ? n.host : n;
 }
-function ee(t) {
+function te(t) {
   const n = nt(t);
-  return Ct(n) ? t.ownerDocument ? t.ownerDocument.body : t.body : I(n) && pt(n) ? n : ee(n);
+  return Ct(n) ? t.ownerDocument ? t.ownerDocument.body : t.body : N(n) && pt(n) ? n : te(n);
 }
-function Rt(t, n, e) {
+function Tt(t, n, e) {
   var o;
   n === void 0 && (n = []), e === void 0 && (e = true);
-  const i = ee(t), c = i === ((o = t.ownerDocument) == null ? void 0 : o.body), s = R(i);
-  return c ? n.concat(s, s.visualViewport || [], pt(i) ? i : [], s.frameElement && e ? Rt(s.frameElement) : []) : n.concat(i, Rt(i, [], e));
+  const i = te(t), c = i === ((o = t.ownerDocument) == null ? void 0 : o.body), s = $(i);
+  return c ? n.concat(s, s.visualViewport || [], pt(i) ? i : [], s.frameElement && e ? Tt(s.frameElement) : []) : n.concat(i, Tt(i, [], e));
 }
-function ne(t) {
-  const n = B(t);
+function ee(t) {
+  const n = L(t);
   let e = parseFloat(n.width) || 0, o = parseFloat(n.height) || 0;
-  const i = I(t), c = i ? t.offsetWidth : e, s = i ? t.offsetHeight : o, a = gt(e) !== c || gt(o) !== s;
+  const i = N(t), c = i ? t.offsetWidth : e, s = i ? t.offsetHeight : o, a = gt(e) !== c || gt(o) !== s;
   return a && (e = c, o = s), {
     width: e,
     height: o,
     $: a
   };
 }
-function oe(t) {
-  return N(t) ? t : t.contextElement;
+function ne(t) {
+  return P(t) ? t : t.contextElement;
 }
 function et(t) {
-  const n = oe(t);
-  if (!I(n))
+  const n = ne(t);
+  if (!N(n))
     return H(1);
   const e = n.getBoundingClientRect(), {
     width: o,
     height: i,
     $: c
-  } = ne(n);
+  } = ee(n);
   let s = (c ? gt(e.width) : e.width) / o, a = (c ? gt(e.height) : e.height) / i;
   return (!s || !Number.isFinite(s)) && (s = 1), (!a || !Number.isFinite(a)) && (a = 1), {
     x: s,
@@ -683,29 +683,29 @@ function et(t) {
   };
 }
 var We = H(0);
-function ie(t) {
-  const n = R(t);
-  return !Vt() || !n.visualViewport ? We : {
+function oe(t) {
+  const n = $(t);
+  return !Dt() || !n.visualViewport ? We : {
     x: n.visualViewport.offsetLeft,
     y: n.visualViewport.offsetTop
   };
 }
 function He(t, n, e) {
-  return n === void 0 && (n = false), !e || n && e !== R(t) ? false : n;
+  return n === void 0 && (n = false), !e || n && e !== $(t) ? false : n;
 }
 function ft(t, n, e, o) {
   n === void 0 && (n = false), e === void 0 && (e = false);
-  const i = t.getBoundingClientRect(), c = oe(t);
+  const i = t.getBoundingClientRect(), c = ne(t);
   let s = H(1);
-  n && (o ? N(o) && (s = et(o)) : s = et(t));
-  const a = He(c, e, o) ? ie(c) : H(0);
+  n && (o ? P(o) && (s = et(o)) : s = et(t));
+  const a = He(c, e, o) ? oe(c) : H(0);
   let u = (i.left + a.x) / s.x, r = (i.top + a.y) / s.y, m = i.width / s.x, l = i.height / s.y;
   if (c) {
-    const d = R(c), f = o && N(o) ? R(o) : o;
+    const d = $(c), f = o && P(o) ? $(o) : o;
     let p = d.frameElement;
     for (; p && o && f !== d; ) {
-      const v = et(p), w = p.getBoundingClientRect(), b = B(p), k = w.left + (p.clientLeft + parseFloat(b.paddingLeft)) * v.x, O = w.top + (p.clientTop + parseFloat(b.paddingTop)) * v.y;
-      u *= v.x, r *= v.y, m *= v.x, l *= v.y, u += k, r += O, p = R(p).frameElement;
+      const v = et(p), x = p.getBoundingClientRect(), b = L(p), C = x.left + (p.clientLeft + parseFloat(b.paddingLeft)) * v.x, k = x.top + (p.clientTop + parseFloat(b.paddingTop)) * v.y;
+      u *= v.x, r *= v.y, m *= v.x, l *= v.y, u += C, r += k, p = $(p).frameElement;
     }
   }
   return _t({
@@ -721,7 +721,7 @@ function je(t) {
     offsetParent: e,
     strategy: o
   } = t;
-  const i = I(e), c = X(e);
+  const i = N(e), c = X(e);
   if (e === c)
     return n;
   let s = {
@@ -729,7 +729,7 @@ function je(t) {
     scrollTop: 0
   }, a = H(1);
   const u = H(0);
-  if ((i || !i && o !== "fixed") && ((j(e) !== "body" || pt(c)) && (s = kt(e)), I(e))) {
+  if ((i || !i && o !== "fixed") && ((j(e) !== "body" || pt(c)) && (s = kt(e)), N(e))) {
     const r = ft(e);
     a = et(e), u.x = r.x + e.clientLeft, u.y = r.y + e.clientTop;
   }
@@ -743,14 +743,14 @@ function je(t) {
 function Xe(t) {
   return Array.from(t.getClientRects());
 }
-function se(t) {
+function ie(t) {
   return ft(X(t)).left + kt(t).scrollLeft;
 }
 function Ye(t) {
   const n = X(t), e = kt(t), o = t.ownerDocument.body, i = tt(n.scrollWidth, n.clientWidth, o.scrollWidth, o.clientWidth), c = tt(n.scrollHeight, n.clientHeight, o.scrollHeight, o.clientHeight);
-  let s = -e.scrollLeft + se(t);
+  let s = -e.scrollLeft + ie(t);
   const a = -e.scrollTop;
-  return B(o).direction === "rtl" && (s += tt(n.clientWidth, o.clientWidth) - i), {
+  return L(o).direction === "rtl" && (s += tt(n.clientWidth, o.clientWidth) - i), {
     width: i,
     height: c,
     x: s,
@@ -758,11 +758,11 @@ function Ye(t) {
   };
 }
 function ze(t, n) {
-  const e = R(t), o = X(t), i = e.visualViewport;
+  const e = $(t), o = X(t), i = e.visualViewport;
   let c = o.clientWidth, s = o.clientHeight, a = 0, u = 0;
   if (i) {
     c = i.width, s = i.height;
-    const r = Vt();
+    const r = Dt();
     (!r || r && n === "fixed") && (a = i.offsetLeft, u = i.offsetTop);
   }
   return {
@@ -773,7 +773,7 @@ function ze(t, n) {
   };
 }
 function qe(t, n) {
-  const e = ft(t, true, n === "fixed"), o = e.top + t.clientTop, i = e.left + t.clientLeft, c = I(t) ? et(t) : H(1), s = t.clientWidth * c.x, a = t.clientHeight * c.y, u = i * c.x, r = o * c.y;
+  const e = ft(t, true, n === "fixed"), o = e.top + t.clientTop, i = e.left + t.clientLeft, c = N(t) ? et(t) : H(1), s = t.clientWidth * c.x, a = t.clientHeight * c.y, u = i * c.x, r = o * c.y;
   return {
     width: s,
     height: a,
@@ -781,16 +781,16 @@ function qe(t, n) {
     y: r
   };
 }
-function Ht(t, n, e) {
+function Wt(t, n, e) {
   let o;
   if (n === "viewport")
     o = ze(t, e);
   else if (n === "document")
     o = Ye(X(t));
-  else if (N(n))
+  else if (P(n))
     o = qe(n, e);
   else {
-    const i = ie(t);
+    const i = oe(t);
     o = {
       ...n,
       x: n.x - i.x,
@@ -799,20 +799,20 @@ function Ht(t, n, e) {
   }
   return _t(o);
 }
-function ce(t, n) {
+function se(t, n) {
   const e = nt(t);
-  return e === n || !N(e) || Ct(e) ? false : B(e).position === "fixed" || ce(e, n);
+  return e === n || !P(e) || Ct(e) ? false : L(e).position === "fixed" || se(e, n);
 }
 function Ge(t, n) {
   const e = n.get(t);
   if (e)
     return e;
-  let o = Rt(t, [], false).filter((a) => N(a) && j(a) !== "body"), i = null;
-  const c = B(t).position === "fixed";
+  let o = Tt(t, [], false).filter((a) => P(a) && j(a) !== "body"), i = null;
+  const c = L(t).position === "fixed";
   let s = c ? nt(t) : t;
-  for (; N(s) && !Ct(s); ) {
-    const a = B(s), u = Dt(s);
-    !u && a.position === "fixed" && (i = null), (c ? !u && !i : !u && a.position === "static" && !!i && ["absolute", "fixed"].includes(i.position) || pt(s) && !u && ce(t, s)) ? o = o.filter((m) => m !== s) : i = a, s = nt(s);
+  for (; P(s) && !Ct(s); ) {
+    const a = L(s), u = Lt(s);
+    !u && a.position === "fixed" && (i = null), (c ? !u && !i : !u && a.position === "static" && !!i && ["absolute", "fixed"].includes(i.position) || pt(s) && !u && se(t, s)) ? o = o.filter((m) => m !== s) : i = a, s = nt(s);
   }
   return n.set(t, o), o;
 }
@@ -824,9 +824,9 @@ function Ke(t) {
     strategy: i
   } = t;
   const s = [...e === "clippingAncestors" ? Ge(n, this._c) : [].concat(e), o], a = s[0], u = s.reduce((r, m) => {
-    const l = Ht(n, m, i);
-    return r.top = tt(l.top, r.top), r.right = St(l.right, r.right), r.bottom = St(l.bottom, r.bottom), r.left = tt(l.left, r.left), r;
-  }, Ht(n, a, i));
+    const l = Wt(n, m, i);
+    return r.top = tt(l.top, r.top), r.right = At(l.right, r.right), r.bottom = At(l.bottom, r.bottom), r.left = tt(l.left, r.left), r;
+  }, Wt(n, a, i));
   return {
     width: u.right - u.left,
     height: u.bottom - u.top,
@@ -835,10 +835,10 @@ function Ke(t) {
   };
 }
 function Je(t) {
-  return ne(t);
+  return ee(t);
 }
 function Qe(t, n, e) {
-  const o = I(n), i = X(n), c = e === "fixed", s = ft(t, true, c, n);
+  const o = N(n), i = X(n), c = e === "fixed", s = ft(t, true, c, n);
   let a = {
     scrollLeft: 0,
     scrollTop: 0
@@ -849,7 +849,7 @@ function Qe(t, n, e) {
       const r = ft(n, true, c, n);
       u.x = r.x + n.clientLeft, u.y = r.y + n.clientTop;
     } else
-      i && (u.x = se(i));
+      i && (u.x = ie(i));
   return {
     x: s.left + a.scrollLeft - u.x,
     y: s.top + a.scrollTop - u.y,
@@ -857,17 +857,17 @@ function Qe(t, n, e) {
     height: s.height
   };
 }
-function jt(t, n) {
-  return !I(t) || B(t).position === "fixed" ? null : n ? n(t) : t.offsetParent;
+function Ht(t, n) {
+  return !N(t) || L(t).position === "fixed" ? null : n ? n(t) : t.offsetParent;
 }
-function ae(t, n) {
-  const e = R(t);
-  if (!I(t))
+function ce(t, n) {
+  const e = $(t);
+  if (!N(t))
     return e;
-  let o = jt(t, n);
-  for (; o && Me(o) && B(o).position === "static"; )
-    o = jt(o, n);
-  return o && (j(o) === "html" || j(o) === "body" && B(o).position === "static" && !Dt(o)) ? e : o || Fe(t) || e;
+  let o = Ht(t, n);
+  for (; o && Me(o) && L(o).position === "static"; )
+    o = Ht(o, n);
+  return o && (j(o) === "html" || j(o) === "body" && L(o).position === "static" && !Lt(o)) ? e : o || Fe(t) || e;
 }
 var Ue = async function(t) {
   let {
@@ -875,7 +875,7 @@ var Ue = async function(t) {
     floating: e,
     strategy: o
   } = t;
-  const i = this.getOffsetParent || ae, c = this.getDimensions;
+  const i = this.getOffsetParent || ce, c = this.getDimensions;
   return {
     reference: Qe(n, await i(e), o),
     floating: {
@@ -886,18 +886,18 @@ var Ue = async function(t) {
   };
 };
 function Ze(t) {
-  return B(t).direction === "rtl";
+  return L(t).direction === "rtl";
 }
 var tn = {
   convertOffsetParentRelativeRectToViewportRelativeRect: je,
   getDocumentElement: X,
   getClippingRect: Ke,
-  getOffsetParent: ae,
+  getOffsetParent: ce,
   getElementRects: Ue,
   getClientRects: Xe,
   getDimensions: Je,
   getScale: et,
-  isElement: N,
+  isElement: P,
   isRTL: Ze
 };
 var en = (t, n, e) => {
@@ -986,12 +986,12 @@ var an = defineComponent({
   }
 });
 var ln = G(an, [["__scopeId", "data-v-6a87982d"]]);
-var Ot = (t) => (pushScopeId("data-v-f130216d"), t = t(), popScopeId(), t);
+var ae = (t) => (pushScopeId("data-v-710c608f"), t = t(), popScopeId(), t);
 var rn = ["title"];
 var un = { class: "vui-cascade-option__string" };
 var dn = { class: "vui-cascade-option__string-left" };
 var fn = { class: "vui-cascade-option__tree-btn-space" };
-var pn = Ot(() => createBaseVNode("i", { "_i-bxs:right-arrow": "" }, null, -1));
+var pn = ae(() => createBaseVNode("i", { "_i-bxs:right-arrow": "" }, null, -1));
 var mn = [
   pn
 ];
@@ -999,22 +999,11 @@ var hn = {
   key: 0,
   class: "vui-cascade-oprion__next-btn"
 };
-var gn = { key: 0 };
-var vn = Ot(() => createBaseVNode("i", { "_i-ep:arrow-right": "" }, null, -1));
-var _n = [
-  vn
+var gn = ae(() => createBaseVNode("i", { "_i-ep:arrow-right": "" }, null, -1));
+var vn = [
+  gn
 ];
-var yn = { key: 1 };
-var xn = Ot(() => createBaseVNode("i", { "_i-ep:loading": "" }, null, -1));
-var wn = [
-  xn
-];
-var bn = { key: 2 };
-var Cn = Ot(() => createBaseVNode("i", { "_i-ep:refresh": "" }, null, -1));
-var kn = [
-  Cn
-];
-var On = defineComponent({
+var _n = defineComponent({
   __name: "CascadeOption",
   props: {
     option: {},
@@ -1024,7 +1013,7 @@ var On = defineComponent({
   setup(t, { emit: n }) {
     const e = t, o = inject("selectedOptions"), i = n, c = ref(false), s = computed(() => !!e.option.options || !!e.option.getAsyncOptions), a = computed(() => !!e.option.children), u = computed(() => {
       var p;
-      const l = (p = o == null ? void 0 : o.value) == null ? void 0 : p.find((v, w) => w === e.cascade.id);
+      const l = (p = o == null ? void 0 : o.value) == null ? void 0 : p.find((v, x) => x === e.cascade.id);
       if (!l)
         return false;
       const d = l.id ?? l.value, f = e.option.id || e.option.value;
@@ -1058,9 +1047,7 @@ var On = defineComponent({
               option: e.option
             }, null, 8, ["option"])
           ]),
-          s.value ? (openBlock(), createElementBlock("div", hn, [
-            l.option.loadingState ? l.option.loadingState === "process" ? (openBlock(), createElementBlock("span", yn, wn)) : l.option.loadingState === "ready" ? (openBlock(), createElementBlock("span", bn, kn)) : createCommentVNode("", true) : (openBlock(), createElementBlock("span", gn, _n))
-          ])) : createCommentVNode("", true)
+          s.value ? (openBlock(), createElementBlock("div", hn, vn)) : createCommentVNode("", true)
         ]),
         a.value ? (openBlock(), createBlock(on, {
           key: 0,
@@ -1081,29 +1068,29 @@ var On = defineComponent({
     };
   }
 });
-var En = G(On, [["__scopeId", "data-v-f130216d"]]);
-var An = (t) => (pushScopeId("data-v-2aa22e28"), t = t(), popScopeId(), t);
-var Sn = { class: "vui-cascade__scrollable" };
-var Tn = {
+var yn = G(_n, [["__scopeId", "data-v-710c608f"]]);
+var xn = (t) => (pushScopeId("data-v-140a99b9"), t = t(), popScopeId(), t);
+var wn = { class: "vui-cascade__scrollable" };
+var bn = {
   key: 0,
   class: "vui-cascade__top-space"
 };
-var Rn = An(() => createBaseVNode("i", { "_i-ep:back": "" }, null, -1));
-var $n = [
-  Rn
+var Cn = xn(() => createBaseVNode("i", { "_i-ep:back": "" }, null, -1));
+var kn = [
+  Cn
 ];
-var Bn = { class: "flex items-center justify-center" };
-var Ln = { key: 0 };
-var Dn = { key: 1 };
-var Vn = {
+var On = { class: "flex items-center justify-center w-full" };
+var En = { key: 0 };
+var An = { key: 1 };
+var Sn = {
   key: 0,
   class: "vui-cascade__no-data"
 };
-var In = {
+var Tn = {
   key: 0,
   class: "vui-cascade__fog"
 };
-var Nn = defineComponent({
+var Rn = defineComponent({
   __name: "Cascade",
   props: {
     cascade: {},
@@ -1126,32 +1113,32 @@ var Nn = defineComponent({
       o("on-back");
     }
     return (a, u) => (openBlock(), createElementBlock("div", mergeProps({ class: "vui-cascade" }, i.value), [
-      createBaseVNode("div", Sn, [
-        e.canBack ? (openBlock(), createElementBlock("div", Tn, [
+      createBaseVNode("div", wn, [
+        e.canBack ? (openBlock(), createElementBlock("div", bn, [
           renderSlot(a.$slots, "backBtn", normalizeProps(guardReactiveProps({ back: s })), () => [
             createBaseVNode("div", {
               class: "vui-cascade__back-btn",
               onClick: s
-            }, $n)
+            }, kn)
           ], true),
-          createBaseVNode("div", Bn, [
-            a.cascade.loadStatus === "process" ? (openBlock(), createElementBlock("span", Ln, "Loading...")) : createCommentVNode("", true),
-            a.cascade.loadStatus === "error" ? (openBlock(), createElementBlock("span", Dn, "Data hasn't been loaded")) : createCommentVNode("", true)
+          createBaseVNode("div", On, [
+            a.cascade.loadStatus === "process" ? (openBlock(), createElementBlock("span", En, "Loading...")) : createCommentVNode("", true),
+            a.cascade.loadStatus === "error" ? (openBlock(), createElementBlock("span", An, "Data hasn't been loaded")) : createCommentVNode("", true)
           ])
         ])) : createCommentVNode("", true),
         renderSlot(a.$slots, "beforeOptions", normalizeProps(guardReactiveProps({ cascade: e.cascade })), void 0, true),
-        (openBlock(true), createElementBlock(Fragment, null, renderList(a.cascade.options, (r) => (openBlock(), createBlock(En, {
+        (openBlock(true), createElementBlock(Fragment, null, renderList(a.cascade.options, (r) => (openBlock(), createBlock(yn, {
           key: r.id || r.value,
           cascade: a.cascade,
           option: r,
           onOnClick: c
         }, null, 8, ["cascade", "option"]))), 128)),
         renderSlot(a.$slots, "cascadeNoData", normalizeProps(guardReactiveProps({ cascade: e.cascade })), () => [
-          a.cascade.options.length ? createCommentVNode("", true) : (openBlock(), createElementBlock("div", Vn, toDisplayString(e.noDataText || "no data"), 1))
+          a.cascade.options.length ? createCommentVNode("", true) : (openBlock(), createElementBlock("div", Sn, toDisplayString(e.noDataText || "no data"), 1))
         ], true),
         createVNode(Transition, { class: "vui-cascade__fog-transition" }, {
           default: withCtx(() => [
-            e.fog ? (openBlock(), createElementBlock("div", In)) : createCommentVNode("", true)
+            e.fog ? (openBlock(), createElementBlock("div", Tn)) : createCommentVNode("", true)
           ]),
           _: 1
         })
@@ -1159,23 +1146,23 @@ var Nn = defineComponent({
     ], 16));
   }
 });
-var Pn = G(Nn, [["__scopeId", "data-v-2aa22e28"]]);
-var Mn = (t) => (pushScopeId("data-v-81b94dc0"), t = t(), popScopeId(), t);
-var Fn = { class: "vui-cascade-input__label" };
-var Wn = { key: 0 };
-var Hn = {
+var $n = G(Rn, [["__scopeId", "data-v-140a99b9"]]);
+var Bn = (t) => (pushScopeId("data-v-cd9468fd"), t = t(), popScopeId(), t);
+var Ln = { class: "vui-cascade-input__label" };
+var Dn = { key: 0 };
+var Vn = {
   key: 1,
   class: "vuscade-input__placeholder"
 };
-var jn = Mn(() => createBaseVNode("div", { "_i-material-symbols:close": "" }, null, -1));
-var Xn = [
-  jn
+var In = Bn(() => createBaseVNode("div", { "_i-material-symbols:close": "" }, null, -1));
+var Nn = [
+  In
 ];
-var Yn = {
+var Pn = {
   key: 0,
   class: "vui-cascade-input__error"
 };
-var zn = defineComponent({
+var Mn = defineComponent({
   __name: "CascadeInput",
   props: {
     values: {},
@@ -1198,21 +1185,21 @@ var zn = defineComponent({
     }
     return (u, r) => (openBlock(), createElementBlock(Fragment, null, [
       createBaseVNode("div", mergeProps({ class: "vui-cascade-input" }, c.value, { onClick: s }), [
-        createBaseVNode("div", Fn, [
-          i.value ? (openBlock(), createElementBlock("span", Wn, toDisplayString(i.value), 1)) : (openBlock(), createElementBlock("div", Hn, toDisplayString(e.placeholder), 1))
+        createBaseVNode("div", Ln, [
+          i.value ? (openBlock(), createElementBlock("span", Dn, toDisplayString(i.value), 1)) : (openBlock(), createElementBlock("div", Vn, toDisplayString(e.placeholder), 1))
         ]),
         e.clearable && e.values.length ? (openBlock(), createElementBlock("div", {
           key: 0,
           class: "flex-shrink-0 rounded p-1 hover:bg-gray-300",
           onClick: a
-        }, Xn)) : createCommentVNode("", true)
+        }, Nn)) : createCommentVNode("", true)
       ], 16),
-      u.errorMsg ? (openBlock(), createElementBlock("div", Yn, toDisplayString(u.errorMsg), 1)) : createCommentVNode("", true)
+      u.errorMsg ? (openBlock(), createElementBlock("div", Pn, toDisplayString(u.errorMsg), 1)) : createCommentVNode("", true)
     ], 64));
   }
 });
-var qn = G(zn, [["__scopeId", "data-v-81b94dc0"]]);
-var Gn = defineComponent({
+var Fn = G(Mn, [["__scopeId", "data-v-cd9468fd"]]);
+var Wn = defineComponent({
   __name: "Cascader",
   props: {
     modelValue: {},
@@ -1235,7 +1222,7 @@ var Gn = defineComponent({
       options: e.data
     }));
     function f() {
-      A(d.value, 0), l.value = P(e.modelValue || []);
+      T(d.value, 0), l.value = M(e.modelValue || []);
     }
     f(), watch(() => e.data, () => {
       f();
@@ -1244,11 +1231,11 @@ var Gn = defineComponent({
       var _;
       return ((_ = r.value[r.value.length - 1]) == null ? void 0 : _.id) === h.id;
     };
-    function w(h) {
-      h && e.disabled || (a.value = h, h || (l.value = P(e.modelValue || [])));
+    function x(h) {
+      h && e.disabled || (a.value = h, h || (l.value = M(e.modelValue || [])));
     }
     onMounted(() => {
-      Oe(i.value, k);
+      Oe(i.value, C);
       const h = c.value, _ = s.value;
       en(h, _, {
         middleware: [
@@ -1256,68 +1243,72 @@ var Gn = defineComponent({
           Ne(4),
           Pe()
         ]
-      }).then(({ y }) => {
+      }).then(({ y: g }) => {
         Object.assign(_.style, {
-          top: `${y}px`
+          top: `${g}px`
         });
       });
     });
     function b() {
-      w(true);
+      x(true);
     }
-    function k() {
-      w(false);
+    function C() {
+      x(false);
     }
-    function O({ cascade: h, optionParams: _ }) {
+    function k({ cascade: h, optionParams: _ }) {
       if (l.value = l.value.slice(0, h.id), l.value[h.id] = _.option, _.last) {
         o("update:modelValue", st(l.value)), nextTick(() => {
-          w(false);
+          x(false);
         });
         return;
       }
-      A(_.option);
+      T(_.option);
     }
-    function A(h, _) {
-      const y = _ ?? r.value.length;
-      _ !== void 0 && (r.value = r.value.slice(0, _)), r.value.push(E(h, y)), console.log(r.value);
+    function T(h, _) {
+      const g = _ ?? r.value.length;
+      _ !== void 0 && (r.value = r.value.slice(0, _)), r.value.push(O(h, g)), console.log(r.value);
     }
-    function E(h, _) {
-      const y = { id: _, options: h.options || [], loadStatus: void 0 };
-      return console.log(h), h.getAsyncOptions && (y.loadStatus = "process", h.getAsyncOptions().then((D) => {
-        y.loadStatus = "success", y.options.push(...D);
+    function O(h, _) {
+      const g = { id: _, options: h.options || [], loadStatus: void 0 };
+      return console.log(h), h.getAsyncOptions && (g.loadStatus = "process", h.getAsyncOptions().then((D) => {
+        g.loadStatus = "success", D.forEach((A) => {
+          console.log("options: ---", g.options);
+          const E = g.options.findIndex((B) => B.id ? B.id === A.id : B.value === A.value);
+          E >= 0 && g.options.splice(E, 1), g.options.push(A);
+        });
       }).catch(() => {
-        y.loadStatus = "error";
-      })), y;
+        g.loadStatus = "error";
+      })), g;
     }
     function it() {
       r.value.pop();
     }
     function K() {
-      l.value = [], o("update:modelValue", st([])), A(d.value, 0);
+      l.value = [], o("update:modelValue", st([])), T(d.value, 0);
     }
-    function P(h) {
-      var D, $;
+    function M(h) {
+      var D, A;
       if (e.transform)
-        return e.transform(h, E);
-      const _ = [], y = h;
-      for (let S = 0; S < y.length; S++) {
-        const M = y[S], F = (W) => {
-          var It;
-          let ct = W == null ? void 0 : W.find((Q) => Q.value === M);
+        return e.transform(h, O);
+      const _ = [], g = h;
+      for (let E = 0; E < g.length; E++) {
+        const B = g[E], F = (W) => {
+          var Vt;
+          let ct = W == null ? void 0 : W.find((Q) => Q.value === B);
           if (ct)
             return ct;
           for (let Q = 0; Q < (W == null ? void 0 : W.length); Q++)
-            if ((It = W[Q].children) != null && It.length && (ct = F(W[Q].children), ct))
+            if ((Vt = W[Q].children) != null && Vt.length && (ct = F(W[Q].children), ct))
               return ct;
-        }, J = F((D = r.value[S]) == null ? void 0 : D.options);
+        }, J = F((D = r.value[E]) == null ? void 0 : D.options);
         if (J)
-          if (_.push(J), ($ = J.options) != null && $.length)
-            A(J, S + 1);
-          else if (S < y.length - 1) {
+          if (_.push(J), (A = J.options) != null && A.length)
+            T(J, E + 1);
+          else if (E < g.length - 1) {
             u.value = "Can`t display such a value";
             break;
           } else
-            S === y.length - 1 && (u.value = "");
+            E === g.length - 1 && (u.value = "");
         else {
           u.value = "Can`t display such a value";
           break;
@@ -1338,7 +1329,7 @@ var Gn = defineComponent({
         ref: c,
         class: "vue-cascader__input-wrapper"
       }, [
-        createVNode(qn, {
+        createVNode(Fn, {
           values: p.value,
           separator: e.separator,
           placeholder: e.placeholder,
@@ -1359,22 +1350,22 @@ var Gn = defineComponent({
           name: "vui-cascader-transition"
         }, {
           default: withCtx(() => [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(m.value, (y, D) => (openBlock(), createBlock(Pn, {
-              key: y.id,
-              cascade: y,
+            (openBlock(true), createElementBlock(Fragment, null, renderList(m.value, (g, D) => (openBlock(), createBlock($n, {
+              key: g.id,
+              cascade: g,
               padding: D,
-              fog: !v(y),
+              fog: !v(g),
               canBack: D > 0,
               configs: e.cascadesConfig,
-              onOnSelect: O,
+              onOnSelect: k,
               onOnBack: it,
               noDataText: e.noDataText
             }, {
-              cascadeNoData: withCtx(({ cascade: $ }) => [
-                renderSlot(h.$slots, "cascadeNoData", normalizeProps(guardReactiveProps($)), void 0, true)
+              cascadeNoData: withCtx(({ cascade: A }) => [
+                renderSlot(h.$slots, "cascadeNoData", normalizeProps(guardReactiveProps(A)), void 0, true)
               ]),
-              beforeOptions: withCtx(({ cascade: $ }) => [
-                renderSlot(h.$slots, "beforeOptions", normalizeProps(guardReactiveProps({ cascade: $, selectedOptions: l.value })), void 0, true)
+              beforeOptions: withCtx(({ cascade: A }) => [
+                renderSlot(h.$slots, "beforeOptions", normalizeProps(guardReactiveProps({ cascade: A, selectedOptions: l.value })), void 0, true)
               ]),
               _: 2
             }, 1032, ["cascade", "padding", "fog", "canBack", "configs", "noDataText"]))), 128))
@@ -1385,16 +1376,16 @@ var Gn = defineComponent({
     ], 512));
   }
 });
-var Kn = G(Gn, [["__scopeId", "data-v-edaeae71"]]);
-var Qn = {
+var Hn = G(Wn, [["__scopeId", "data-v-bccd2592"]]);
+var Xn = {
   install: (t) => {
-    t.component("VuiButton", ye), t.component("VuiCascader", Kn);
+    t.component("VuiButton", ye), t.component("VuiCascader", Hn);
   }
 };
 export {
   ye as VuiButton,
-  Kn as VuiCascader,
-  Qn as default,
+  Hn as VuiCascader,
+  Xn as default,
   ot as styling
 };
 //# sourceMappingURL=@42sol_vui.js.map

@@ -10,38 +10,27 @@ import '@42sol/vui/dist/vui.css';
 import { h, ref } from 'vue';
 import { VuiCascader } from '@42sol/vui';
 
-const data = [
-  { value: "Account", title: "Account" },
-  { value: "Card", title: "Card" },
-  { value: "Contact", title: "Contact" },
-  { value: "Contract", title: "Contract" },
+function getDocCompaniesAsync() {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res([{ value: 'kfc', title: 'KFC', options: "Документы KFC" }]);
+    }, 5000);
+  });
+}
+
+const data1 = [
   {
     value: "Document",
-    title: "Document asdasdasdasdasdasdasdas",
+    title: "Документы",
     options: [
       { value: "FamilyMember", title: "Члены семьи", options: [] },
-      {
-        value: "Company",
-        title: "Компании",
-        getAsyncOptions: () => {
-          return new Promise((res) => {
-            setTimeout(() => {
-              res([{ value: 'asyncCompany-1', title: 'Асинхронная компания' }]);
-            }, 5000);
-          });
-        },
+      { 
+        value: "Company", title: "Компании", getAsyncOptions: getDocCompaniesAsync,
         options: [
           {
-            value: "1",
-            title: "Макдональдас",
+            value: "1", title: "Макдональдс",
             options: [
-              {
-                value: "1",
-                title: "Документы Мака",
-                render: () => {
-                  return h('div', 'Доки мака');
-                }
-              }
+              { value: "1", title: "Документы Мака", render: () => h('div', 'Доки мака') }
             ]
           }
         ]
@@ -50,11 +39,10 @@ const data = [
   },
   {
     value: "Tax",
-    title: "Tax",
+    title: "Налоги",
     children: [
       {
-        value: 'IndividualTax',
-        title: 'Налоги физ лиц',
+        value: 'IndividualTax', title: 'Налоги физ лиц',
         children: [
           { value: "1", title: "Налог на роскошь" },
           { value: "2", title: "НДФЛ" },
@@ -64,7 +52,61 @@ const data = [
   },
 ];
 
-const value = ref([]);
+const value1 = ref([]);
 </script>
 
-<vui-cascader class='w-96' :data='data' v-model='value' clearable></vui-cascader>
+<vui-cascader :data='data1' v-model='value1' clearable></vui-cascader>
+
+```html
+<script setup>
+import { h, ref } from 'vue';
+
+function getDocCompaniesAsync() {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res([{ value: 'kfc', title: 'KFC', options: "Документы KFC" }]);
+    }, 5000);
+  });
+}
+
+const data1 = [
+  {
+    value: "Document",
+    title: "Documents",
+    options: [
+      { value: "FamilyMember", title: "Члены семьи", options: [] },
+      { 
+        value: "Company", title: "Компании", getAsyncOptions: getDocCompaniesAsync,
+        options: [
+          {
+            value: "1", title: "Макдональдас",
+            options: [
+              { value: "1", title: "Документы Мака", render: () => h('div', 'Доки мака') }
+            ]
+          }
+        ]
+      },
+    ]
+  },
+  {
+    value: "Tax",
+    title: "Taxes",
+    children: [
+      {
+        value: 'IndividualTax', title: 'Налоги физ лиц',
+        children: [
+          { value: "1", title: "Налог на роскошь" },
+          { value: "2", title: "НДФЛ" },
+        ]
+      }
+    ]
+  },
+];
+
+const value1 = ref([]);
+</script>
+
+<template>
+  <vui-cascader :data='data1' v-model='value1' clearable></vui-cascader>
+</template>
+```

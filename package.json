@@ -1,7 +1,7 @@
 {
   "name": "@42sol/vui",
   "private": false,
-  "version": "0.1.0-alpha.19",
+  "version": "0.1.0-alpha.20",
   "homepage": "http://42-sol.github.io/vui",
   "type": "module",
   "files": [
@@ -35,11 +35,12 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@42sol/vui": "0.1.0-alpha.19",
+    "@42sol/vui": "^0.1.0-alpha.20",
     "@iconify/json": "^2.2.132",
     "@unocss/preset-attributify": "^0.57.0",
     "@unocss/transformer-directives": "^0.57.0",
     "@vitejs/plugin-vue": "^4.2.3",
+    "latest": "^0.2.0",
     "path": "^0.12.7",
     "rollup-plugin-typescript2": "^0.36.0",
     "sass": "^1.69.4",
