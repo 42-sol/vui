@@ -2,7 +2,7 @@
 <div class="vui-cascade-input" v-bind='blockStyling' @click='onInputClick'>
   <div class="vui-cascade-input__label">
     <span v-if='inputLabel'>{{ inputLabel }}</span>
-    <div v-else class="vuscade-input__placeholder">{{ props.placeholder }}</div>
+    <div v-else class="vui-cascade-input__placeholder">{{ props.placeholder }}</div>
   </div>
 
   <div
