@@ -23,12 +23,11 @@
     @on-click='onOptionClick'
     ></cascade-option>
 
-    <slot name='cascadeNoData' v-bind='{ cascade: props.cascade }'>
-      <div
-      v-if='!cascade.options.length'
-      class="vui-cascade__no-data"
-      >{{ props.noDataText || 'no data' }}</div>
-    </slot>
+    <template v-if='cascade.loadStatus != "process" && !cascade.options.length'>
+      <slot name='cascadeNoData' v-bind='{ cascade: props.cascade }'>
+        <div class="vui-cascade__no-data">{{ props.noDataText || 'no data' }}</div>
+      </slot>
+    </template>
 
     <transition class='vui-cascade__fog-transition'>
       <div class="vui-cascade__fog" v-if='props.fog'></div>
