@@ -26,7 +26,7 @@
       :noDataText='props.noDataText'
       >
         <template #cascadeNoData='{ cascade }'>
-          <slot name='cascadeNoData' v-bind='cascade'></slot>
+          <slot name='cascadeNoData' v-bind='{ cascade }'></slot>
         </template>
         <template #beforeOptions='{ cascade }'>
           <slot name='beforeOptions' v-bind='{ cascade, selectedOptions }'></slot>
