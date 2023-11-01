@@ -25,6 +25,9 @@
       @on-back='removeCascade'
       :noDataText='props.noDataText'
       >
+        <template #cascadeLoading='{ cascade }'>
+          <slot name='cascadeLoading' v-bind='{ cascade }'></slot>
+        </template>
         <template #cascadeNoData='{ cascade }'>
           <slot name='cascadeNoData' v-bind='{ cascade }'></slot>
         </template>
@@ -84,7 +87,7 @@ const isOpened: Ref<boolean> = ref(false);
 const errorMsg: Ref<string> = ref('');
 
 /**
- * Calculated cascades 
+ * Calculated cascades
  */
 const cascades: Ref<CascadeObj[]> = ref([]);
 
@@ -144,7 +147,7 @@ function setIsOpened(val: boolean) {
   if (val && props.disabled) return;
 
   isOpened.value = val;
-  
+
   if (!val) {
     selectedOptions.value = transformData(props.modelValue || []);
   }
@@ -202,7 +205,7 @@ function onSelectOption({ cascade, optionParams }: CascadeSelectEmitOptions) {
     });
     return;
   }
-  
+
   addCreatedCascadeFrom(optionParams.option)
 };
 
@@ -213,7 +216,6 @@ function addCreatedCascadeFrom(option: CascadeOptionObj, id?: number) {
   const newIdx = (id === undefined || id === null) ? cascades.value.length : id;
   if (id !== undefined) cascades.value = cascades.value.slice(0, id);
   cascades.value.push(createCascadeFrom(option, newIdx));
-  console.log(cascades.value)
 };
 
 /**
@@ -222,7 +224,6 @@ function addCreatedCascadeFrom(option: CascadeOptionObj, id?: number) {
 function createCascadeFrom(option: CascadeOptionObj, id: number) {
   const cascade: CascadeObj = { id, options: option.options || [], loadStatus: undefined };
 
-  console.log(option)
   if (option.getAsyncOptions) {
     cascade.loadStatus = 'process';
 
@@ -230,7 +231,6 @@ function createCascadeFrom(option: CascadeOptionObj, id: number) {
       .then((res: CascadeOptionObj[]) => {
         cascade.loadStatus = 'success';
         res.forEach((item) => {
-          console.log('options: ---', cascade.options);
           const alreadyExisted = cascade.options.findIndex(_ => _.id ? _.id === item.id : _.value === item.value);
           if (alreadyExisted >= 0) {
             cascade.options.splice(alreadyExisted, 1);
@@ -270,14 +270,14 @@ function transformData(_modelValue: unknown): CascadeOptionObj[] {
 
   // Default transform-data method (Expected that data is an array)
   const _selectedOptions: CascadeOptionObj[] = [];
-  const values = _modelValue as (string | number)[]; 
+  const values = _modelValue as (string | number)[];
 
   for (let i = 0; i < values.length; i++) {
     const value = values[i];
 
     const deepFindByValue = (arr: CascadeOptionObj[]): CascadeOptionObj | undefined => {
       let _ = arr?.find((_) => _.value === value);
-      
+
       if (_) return _;
 
       for (let i = 0; i < arr?.length; i++) {
@@ -290,7 +290,7 @@ function transformData(_modelValue: unknown): CascadeOptionObj[] {
     }
 
     const foundOption: CascadeOptionObj | undefined = deepFindByValue(cascades.value[i]?.options);
-    
+
     if (foundOption) {
       _selectedOptions.push(foundOption);
       if (foundOption.options?.length) {
@@ -307,7 +307,7 @@ function transformData(_modelValue: unknown): CascadeOptionObj[] {
     else {
       errorMsg.value = 'Can`t display such a value';
       break;
-    } 
+    }
   }
 
   return _selectedOptions;

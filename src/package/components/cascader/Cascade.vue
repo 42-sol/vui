@@ -9,7 +9,11 @@
       </slot>
 
       <div class="flex items-center justify-center w-full">
-        <span v-if='cascade.loadStatus === "process"'>Loading...</span>
+        <span v-if='cascade.loadStatus === "process"'>
+          <slot name='cascadeLoading' v-bind='{ cascade: props.cascade }'>
+            Loading...
+          </slot>
+        </span>
         <span v-if='cascade.loadStatus === "error"'>Data hasn't been loaded</span>
       </div>
     </div>
