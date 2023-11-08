@@ -61,8 +61,15 @@ const value = ref([]);
 
 <template>
 <div class="p-2">
-  <vui-cascader class='w-96' :data='data' v-model='value' clearable></vui-cascader>
-  <p v-for='v in value'>{{ v }}</p>
+  <vui-cascader
+  class='w-96'
+  :data='data'
+  v-model='value'
+  clearable
+  filterableCascades
+  sortableCascades
+  ></vui-cascader>
+  <p>It's value: {{ value }}</p>
 </div>
 </template>
 

@@ -4,16 +4,6 @@ import path from 'path';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/vui/',
-  vite: {
-    resolve: {
-      alias: {
-        '@': (() => {
-          console.log(path.resolve(path.dirname('./'), 'src'))
-          return path.resolve(path.dirname('./'), 'src');
-        })()
-      }
-    },
-  },
   title: "@42sol/vui",
   description: "An awesome Vue 3 UI library",
   themeConfig: {

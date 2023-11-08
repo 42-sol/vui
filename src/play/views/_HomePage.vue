@@ -3,10 +3,14 @@
 </script>
 
 <template>
-<section>
-  <h3 class='text-xl'>Playground</h3>
-  <p>A description will be written later...</p>
-</section>
+<div>
+  <h2 class='text-4xl'>Playground</h2>
+  
+  <section>
+    <h3>How to develop?</h3>
+    <p>Create your component in </p>
+  </section>
+</div>
 </template>
 
 <style scoped>

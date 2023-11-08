@@ -20,9 +20,8 @@ v-bind='blockStyling'
 
       <cascade-option-title :option='props.option'></cascade-option-title>
     </div>
-
     <div v-if='hasOwnOptions' class="vui-cascade-oprion__next-btn">
-      <i _i-ep:arrow-right></i>
+      <div _i-ep:arrow-right></div>
       <!-- <span v-else-if='option.loadStatus === "process"'>
         <i _i-ep:loading></i>
       </span>
