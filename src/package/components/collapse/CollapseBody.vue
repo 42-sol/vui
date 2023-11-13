@@ -14,12 +14,10 @@
 import type { Ref } from 'vue' 
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { styling, pixelsFromNumber } from '@/package/utils';
-import type { CascadeOptionObj } from '@/types.d';
 
 // PROPS
 const props = defineProps<{
   expanded: boolean,
-  option: CascadeOptionObj
   padding?: string | number
 }>();
 

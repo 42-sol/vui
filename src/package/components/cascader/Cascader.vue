@@ -1,16 +1,18 @@
 <template>
 <div ref='cascaderEl' class="vui-cascader">
   <div ref='inputWrapperEl' class="vue-cascader__input-wrapper">
-    <cascade-input
-    :values='selectedTitles'
-    :separator='props.separator'
-    :placeholder='props.placeholder'
-    :disabled='props.disabled'
-    @on-click='onInputClick'
-    @on-clear='onClear'
-    :clearable='props.clearable'
-    ></cascade-input>
+    <vui-input
+      ref='inputEl'
+      :model-value='inputModelValue'
+      :clearable='props.clearable'
+      :placeholder='props.placeholder'
+      :disabled='props.disabled'
+      @on-focus='onInputClick'
+      @on-input='onInput'
+      :readonly='!props.filterable'
+    />
   </div>
+
   <div ref='dropdownEl' class="vui-cascader__dropdown">
     <transition-group tag='div' mode='in-out' name='vui-cascader-transition'>
       <cascade
@@ -24,6 +26,8 @@
       @on-select='onSelectOption'
       @on-back='removeCascade'
       :noDataText='props.noDataText'
+      :filterable='props.filterableCascades'
+      :sortable='props.sortableCascades'
       >
         <template #cascadeLoading='{ cascade }'>
           <slot name='cascadeLoading' v-bind='{ cascade }'></slot>
@@ -48,19 +52,22 @@ import { computed, nextTick, onMounted, provide, ref, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import { computePosition, flip, shift, offset } from '@floating-ui/vue';
 import Cascade from './Cascade.vue';
-import CascadeInput from './CascadeInput.vue';
+import { VuiInput } from '@/package/components';
 
 // PROPS
 const props = withDefaults(defineProps<{
-  modelValue: unknown;
-  data: CascadeOptionObj[],
+  modelValue: unknown
+  data: CascadeOptionObj[]
   separator?: string
-  cascadesConfig?: CascadesConfig,
-  transform?: (_modelValue: unknown, _createCascadeFrom: (_: CascadeOptionObj, id: number) => void) => CascadeOptionObj[],
-  reform?: (_selectedOptions: CascadeOptionObj[]) => unknown,
-  placeholder?: string,
-  disabled?: boolean,
+  placeholder?: string
   clearable?: boolean
+  disabled?: boolean
+  cascadesConfig?: CascadesConfig
+  transform?: (_modelValue: unknown, _createCascadeFrom: (_: CascadeOptionObj, id: number) => void) => CascadeOptionObj[]
+  reform?: (_selectedOptions: CascadeOptionObj[]) => unknown
+  filterable?: boolean
+  filterableCascades?: boolean
+  sortableCascades?: boolean
 }>(), {
   separator: '/',
   placeholder: '',
@@ -69,11 +76,10 @@ const props = withDefaults(defineProps<{
 // EMITS
 const emit = defineEmits(['update:modelValue']);
 
-/**
- * Cascader root HTML element
- */
+// REFS
 const cascaderEl = ref(null);
 const inputWrapperEl = ref(null);
+const inputEl = ref(null) as Ref<HTMLInputElement | null>;
 const dropdownEl = ref(null);
 
 /**
@@ -107,6 +113,8 @@ const visibleCascades = computed(() => {
 const selectedOptions: Ref<CascadeOptionObj[]> = ref([]);
 provide('selectedOptions', selectedOptions);
 
+const inputModelValue = ref('');
+
 /**
  * *KLUDGE to make 1st cascade similar to others
  */
@@ -124,14 +132,11 @@ refresh();
 
 watch(() => props.data, () => {
   refresh();
-})
-
-/**
- * Array of selected-options' titles
- */
-const selectedTitles = computed(() => {
-  return selectedOptions.value.map(_ => _.title)
 });
+watch(() => selectedOptions.value, () => {
+  const _ = selectedOptions.value.map(_ => _.title);
+  inputModelValue.value = _.join(props.separator);
+})
 
 /**
  * Is the cascade last and active
@@ -175,6 +180,33 @@ onMounted(() => {
     });
   });
 });
+
+function onInput(v: string) {
+  if (!v) return onClearInput();
+
+  const values = v.split(props.separator);
+  const savedSelectedOptions = [...selectedOptions.value];
+  clear();
+
+  const somethingWrong = () => selectedOptions.value = savedSelectedOptions;
+
+  for (let i = 0; i < values.length; i++) {
+    const opt = cascades.value[i]?.options?.find(_ => _.title === values[i])
+
+    if (!opt) {
+      somethingWrong();
+      break;
+    }
+
+    // onSelectOption({
+    //   cascade: cascades.value[i],
+    //   optionParams: {
+    //     option: opt,
+    //     last: 
+    //   }
+    // });
+  }
+}
 
 /**
  * On input click
@@ -256,10 +288,15 @@ function removeCascade() {
 /**
  * Clear the input - set model value as []
  */
-function onClear() {
+function clear() {
   selectedOptions.value = [];
-  emit('update:modelValue', reformData([]));
   addCreatedCascadeFrom(rootOption.value, 0);
+}
+
+function onClearInput() {
+  clear();
+  emit('update:modelValue', reformData(selectedOptions.value));
+  inputEl.value?.focus();
 }
 
 /**
@@ -332,7 +369,7 @@ $el: 'vui-cascader';
 
   & .#{$el}__dropdown {
     z-index: var(--vui-floating-z-index);
-    @apply absolute top-0 left-2;
+    @apply absolute top-0 left-0;
   }
 
   &-transition {

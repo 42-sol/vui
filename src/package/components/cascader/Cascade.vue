@@ -1,27 +1,41 @@
 <template>
 <div class="vui-cascade" v-bind='cascadeStyling'>
   <div class="vui-cascade__scrollable">
-    <div class="vui-cascade__top-space" v-if='props.canBack'>
+    <div class="vui-cascade__top-space">
       <slot name='backBtn' v-bind='{ back }'>
-        <div class="vui-cascade__back-btn" @click='back'>
+        <div class="vui-cascade__back-btn" v-if='props.canBack' @click='back'>
           <i _i-ep:back/>
         </div>
       </slot>
 
-      <div class="flex items-center justify-center w-full">
-        <span v-if='cascade.loadStatus === "process"'>
-          <slot name='cascadeLoading' v-bind='{ cascade: props.cascade }'>
-            Loading...
-          </slot>
-        </span>
-        <span v-if='cascade.loadStatus === "error"'>Data hasn't been loaded</span>
+      <div
+      class="vui-cascade__sort-btn"
+      :class='sort ? "vui-cascade__sort-btn--selected" : ""'
+      v-if='props.sortable'
+      @click='changeSort'
+      >
+        <i :class='sort === "desc" ? "i-ri:sort-desc" : "i-ri:sort-asc"'/>
       </div>
+
+      <vui-input
+      class='w-full'
+      v-if='props.filterable'
+      v-model='filter'
+      clearable
+      />
+    </div>
+
+    <div class="flex items-center justify-center w-full">
+      <slot name='cascadeLoading' v-bind='{ cascade: props.cascade }'>
+        <span v-if='cascade.loadStatus === "process"'>Loading...</span>
+      </slot>
+      <span v-if='cascade.loadStatus === "error"'>Data hasn't been loaded</span>
     </div>
 
     <slot name='beforeOptions' v-bind='{ cascade: props.cascade }'></slot>
 
     <cascade-option
-    v-for='option in cascade.options' :key='option.id || option.value'
+    v-for='option in optionsList' :key='option.id || option.value'
     :cascade='cascade'
     :option='option'
     @on-click='onOptionClick'
@@ -43,8 +57,9 @@
 <script setup lang="ts">
 import type { CascadeObj, CascadesConfig, OptionClickEmitOptions } from '@/types.d';
 
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import CascadeOption from './CascadeOption.vue';
+import VuiInput from './../input/Input.vue';
 import { styling, pixelsFromNumber } from '@/package/utils';
 
 // PROPS
@@ -54,10 +69,39 @@ const props = defineProps<{
   fog: boolean
   canBack: boolean,
   configs: CascadesConfig | undefined
-  noDataText?: string
+  noDataText?: string,
+  filterable?: boolean,
+  sortable?: boolean
 }>();
 // EMITS
 const emit = defineEmits(['on-select', 'on-back']);
+
+const filter = ref<string>('');
+const sort = ref<'asc' | 'desc' | null>(null);
+
+function changeSort() {
+  if (sort.value === 'asc') sort.value = 'desc';
+  else if (sort.value === 'desc') sort.value = null;
+  else if (!sort.value) sort.value = 'asc';
+}
+
+/**
+ * Filterable & sortable list of cascade options
+ */
+const optionsList = computed(() => {
+  let arr = [...props.cascade.options];
+
+  if (filter.value) arr = arr.filter(_ => _.title.startsWith(filter.value));
+  if (props.sortable) {
+    if (sort.value === 'desc') {
+      arr = arr.sort((a,b) => b.title.localeCompare(a.title))
+    } else if (sort.value === 'asc') {
+      arr = arr.sort((a,b) => a.title.localeCompare(b.title))
+    }
+  }
+
+  return arr;
+});
 
 /**
  * V-bind class & style to root element
@@ -97,11 +141,19 @@ $el: 'vui-cascade';
   }
 
   &__top-space {
-    @apply w-full;
+    @apply w-full flex items-center space-x-1 p-1;
   }
 
   &__back-btn {
     @apply h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-gray-200;
+  }
+
+  &__sort-btn {
+    @apply flex-shrink-0 h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-gray-200;
+
+    &--selected {
+      @apply text-blue-500;
+    }
   }
 
   &__no-data {
