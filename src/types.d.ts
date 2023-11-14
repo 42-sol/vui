@@ -21,7 +21,8 @@ export type CascadeOptionObj = {
   options?: CascadeOptionObj[],
   getAsyncOptions?: () => Promise,
   onClick?: (params: { preventEmit: () => void, option: CascadeOptionObj }) => unknown;
-  render?: () => VNode
+  render?: () => VNode,
+  previousData?: (number | string)[]
 };
 
 export type OptionClickEmitOptions = {

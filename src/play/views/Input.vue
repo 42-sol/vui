@@ -1,25 +1,27 @@
 <template>
   <div _flex='~ col' _space-y-4>
+    <h2>VuiInput</h2>
+
     <section>
-      <h3 _text-xl>Simple Input</h3>
+      <h3>Simple Input</h3>
       <p>It's value: {{ value1 }}</p>
       <vui-input _w-64 v-model='value1'/>
     </section>
 
     <section>
-      <h3 _text-xl>Clearable Input</h3>
+      <h3>Clearable Input</h3>
       <p>It's value: {{ value2 }}</p>
       <vui-input v-model='value2' clearable/>
     </section>
 
     <section>
-      <h3 _text-xl>Input with placeholder</h3>
+      <h3>Input with placeholder</h3>
       <p>It's value: {{ value3 }}</p>
       <vui-input v-model='value3' placeholder='Test placeholder'/>
     </section>
 
     <section>
-      <h3 _text-xl>Input with placeholder</h3>
+      <h3>Input with placeholder</h3>
       <p>It's value: {{ value4 }}</p>
       <vui-input
       v-model='value4'
@@ -33,22 +35,22 @@
     </section>
 
     <section>
-      <h3 _text-xl>Always-error input</h3>
+      <h3>Always-error input</h3>
       <vui-input v-model='value5' error/>
     </section>
 
     <section>
-      <h3 _text-xl>Disabled input</h3>
+      <h3>Disabled input</h3>
       <vui-input v-model='value6' disabled/>
     </section>
 
     <section>
-      <h3 _text-xl>Readonly input</h3>
+      <h3>Readonly input</h3>
       <vui-input v-model='value7' readonly/>
     </section>
 
     <section>
-      <h3 _text-xl>Focus & blur</h3>
+      <h3>Focus & blur</h3>
       <div _flex _space-x-2 _my-2>
         <button _border @click='focusOn8'>Focus</button>
         <button _border @click='blur8'>Blur</button>
@@ -86,3 +88,13 @@ function blur8() {
   inputEl8.value?.blur();
 }
 </script>
+
+<style lang='scss' scoped>
+h2 {
+  @apply text-2xl;
+}
+
+section h3 {
+  @apply text-xl;
+}
+</style>

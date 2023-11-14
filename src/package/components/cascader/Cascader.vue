@@ -3,12 +3,12 @@
   <div ref='inputWrapperEl' class="vue-cascader__input-wrapper">
     <vui-input
       ref='inputEl'
-      :model-value='inputModelValue'
+      :modelValue='inputModelValue'
+      @on-input='onInputModelValue'
       :clearable='props.clearable'
       :placeholder='props.placeholder'
       :disabled='props.disabled'
       @on-focus='onInputClick'
-      @on-input='onInput'
       :readonly='!props.filterable'
     />
   </div>
@@ -38,6 +38,17 @@
         <template #beforeOptions='{ cascade }'>
           <slot name='beforeOptions' v-bind='{ cascade, selectedOptions }'></slot>
         </template>
+      </cascade>
+
+      <cascade
+      v-if='props.filterable && needFilteredValues && inputModelValue'
+      key='filterCascade'
+      :cascade='{ id: 1, options: allFilteredLastOptions }'
+      :configs='props.cascadesConfig'
+      @on-select='onSelectFilteredOption'
+      :noDataText='props.noDataText'
+      :sortable='props.sortableCascades'
+      >
       </cascade>
     </transition-group>
   </div>
@@ -113,7 +124,52 @@ const visibleCascades = computed(() => {
 const selectedOptions: Ref<CascadeOptionObj[]> = ref([]);
 provide('selectedOptions', selectedOptions);
 
+/**
+ * Value to filter options by input
+ */
 const inputModelValue = ref('');
+const needFilteredValues = ref(false);
+function onInputModelValue(v: string) {
+  needFilteredValues.value = true;
+  inputModelValue.value = v;
+}
+
+/**
+ * All possible end-options from data
+ */
+const allLastOptions = computed<CascadeOptionObj[]>(() => {
+  const arr: CascadeOptionObj[] = [];
+
+  if (props.data?.length) {
+    const findRecursive = (
+      collection: CascadeOptionObj[],
+      fields: ("children" | "options")[],
+      cond: (item: CascadeOptionObj) => boolean,
+      previousData?: (number | string)[]
+    ) => {
+      collection.forEach((item: CascadeOptionObj) => {
+        const reducedPreviousData = previousData?.[0] ? [previousData?.[0]] : [];
+        const _previousData = [ ...reducedPreviousData, item.value ];
+
+        if (cond(item)) arr.push({ id: item.id, value: item.value, title: item.title, previousData: reducedPreviousData });
+
+        fields.forEach((field) => {
+          if (item[field]?.length) {
+            findRecursive(item[field] as CascadeOptionObj[], fields, cond, _previousData);
+          }
+        });
+      });
+    }
+
+    findRecursive(props.data, ["children", "options"], (item: CascadeOptionObj) => !(item.options || item.getAsyncOptions));
+  }
+
+  return arr;
+});
+
+const allFilteredLastOptions = computed(() => {
+  return allLastOptions.value.filter(_ => _.title.startsWith(inputModelValue.value));
+})
 
 /**
  * *KLUDGE to make 1st cascade similar to others
@@ -125,6 +181,7 @@ const rootOption: ComputedRef<CascadeOptionObj> = computed(() => ({
 }));
 
 function refresh() {
+  needFilteredValues.value = false;
   addCreatedCascadeFrom(rootOption.value, 0);
   selectedOptions.value = transformData(props.modelValue || []);
 }
@@ -181,32 +238,35 @@ onMounted(() => {
   });
 });
 
-function onInput(v: string) {
-  if (!v) return onClearInput();
+/**
+ * ?WRONG Difficult method to filter with cascades
+ */
+// function onInput(v: string) {
+//   if (!v) return onClearInput();
 
-  const values = v.split(props.separator);
-  const savedSelectedOptions = [...selectedOptions.value];
-  clear();
+//   const values = v.split(props.separator);
+//   const savedSelectedOptions = [...selectedOptions.value];
+//   clear();
 
-  const somethingWrong = () => selectedOptions.value = savedSelectedOptions;
+//   const somethingWrong = () => selectedOptions.value = savedSelectedOptions;
 
-  for (let i = 0; i < values.length; i++) {
-    const opt = cascades.value[i]?.options?.find(_ => _.title === values[i])
+//   for (let i = 0; i < values.length; i++) {
+//     const opt = cascades.value[i]?.options?.find(_ => _.title === values[i])
 
-    if (!opt) {
-      somethingWrong();
-      break;
-    }
+//     if (!opt) {
+//       somethingWrong();
+//       break;
+//     }
 
-    // onSelectOption({
-    //   cascade: cascades.value[i],
-    //   optionParams: {
-    //     option: opt,
-    //     last: 
-    //   }
-    // });
-  }
-}
+//     onSelectOption({
+//       cascade: cascades.value[i],
+//       optionParams: {
+//         option: opt,
+//         last: !(opt.options?.length || opt.getAsyncOptions)
+//       }
+//     });
+//   }
+// }
 
 /**
  * On input click
@@ -226,7 +286,8 @@ function clickOutside() {
  * On emit recieved
  */
 function onSelectOption({ cascade, optionParams }: CascadeSelectEmitOptions) {
-  selectedOptions.value = selectedOptions.value.slice(0, cascade.id)
+  needFilteredValues.value = false;
+  selectedOptions.value = selectedOptions.value.slice(0, cascade.id);
   selectedOptions.value[cascade.id] = optionParams.option;
 
   if (optionParams.last) {
@@ -238,8 +299,21 @@ function onSelectOption({ cascade, optionParams }: CascadeSelectEmitOptions) {
     return;
   }
 
-  addCreatedCascadeFrom(optionParams.option)
+  addCreatedCascadeFrom(optionParams.option);
 };
+
+function onSelectFilteredOption({ optionParams }: CascadeSelectEmitOptions) {
+  const selectedValue = optionParams.option.value;
+  const previousValues = optionParams.option.previousData || [];
+
+  const fullValue = [...previousValues, selectedValue];
+
+  emit('update:modelValue', fullValue);
+
+  nextTick(() => {
+    refresh();
+  });
+}
 
 /**
  * Create cascade obj and push to arr
@@ -288,16 +362,16 @@ function removeCascade() {
 /**
  * Clear the input - set model value as []
  */
-function clear() {
-  selectedOptions.value = [];
-  addCreatedCascadeFrom(rootOption.value, 0);
-}
+// function clear() {
+//   selectedOptions.value = [];
+//   addCreatedCascadeFrom(rootOption.value, 0);
+// }
 
-function onClearInput() {
-  clear();
-  emit('update:modelValue', reformData(selectedOptions.value));
-  inputEl.value?.focus();
-}
+// function onClearInput() {
+//   clear();
+//   emit('update:modelValue', reformData(selectedOptions.value));
+//   inputEl.value?.focus();
+// }
 
 /**
  * Use transform-method from props or default one

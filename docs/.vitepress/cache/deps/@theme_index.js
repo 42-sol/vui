@@ -8,7 +8,7 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-TQFIIZRC.js";
+} from "./chunk-V7AUFIRV.js";
 
 // node_modules/vitepress/dist/client/theme-default/index.js
 import "/home/dmrom/DEV/42SOL/VUI/node_modules/vitepress/dist/client/theme-default/styles/fonts.css";
@@ -48,6 +48,7 @@ function toValue(r) {
   return typeof r === "function" ? r() : unref(r);
 }
 var isClient = typeof window !== "undefined" && typeof document !== "undefined";
+var isWorker = typeof WorkerGlobalScope !== "undefined" && globalThis instanceof WorkerGlobalScope;
 var isIOS = getIsIOS();
 function getIsIOS() {
   var _a;

@@ -41,6 +41,7 @@ v-bind='blockStyling'
     :cascade='cascade'
     :option='child'
     @on-click='(opt) => emit("on-click", opt)'
+    @click.stop
     ></cascade-option>
   </collapse-body>
 </div>

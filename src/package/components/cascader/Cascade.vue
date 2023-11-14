@@ -63,16 +63,20 @@ import VuiInput from './../input/Input.vue';
 import { styling, pixelsFromNumber } from '@/package/utils';
 
 // PROPS
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   cascade: CascadeObj
-  padding: number
-  fog: boolean
-  canBack: boolean,
-  configs: CascadesConfig | undefined
+  padding?: number
+  fog?: boolean
+  canBack?: boolean,
+  configs?: CascadesConfig | undefined
   noDataText?: string,
   filterable?: boolean,
   sortable?: boolean
-}>();
+}>(), {
+  padding: 0,
+  fog: false,
+  canBack: false
+});
 // EMITS
 const emit = defineEmits(['on-select', 'on-back']);
 

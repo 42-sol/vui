@@ -6,7 +6,8 @@ import '@/package/styles/index.scss';
 import {
   VuiCascader,
   VuiButton,
-  VuiInput
+  VuiInput,
+  VuiCollapseBody
 } from './components';
 
 import { styling } from '@/package/utils/styling';
@@ -16,6 +17,7 @@ export default {
     app.component('VuiButton', VuiButton);
     app.component('VuiCascader', VuiCascader);
     app.component('VuiInput', VuiInput);
+    app.component('VuiInput', VuiCollapseBody);
   }
 };
 
@@ -24,6 +26,7 @@ export {
   VuiButton,
   VuiCascader,
   VuiInput,
+  VuiCollapseBody,
 
   // Utils
   styling

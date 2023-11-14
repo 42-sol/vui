@@ -1,1 +1,1 @@
-export { _CodeViewCollapse } from './codeViewCollapse';
+export { CodeViewCollapse } from './codeViewCollapse';

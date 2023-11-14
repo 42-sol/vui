@@ -6,53 +6,13 @@ You could help us to fill this page by pull request on [vui repo](https://github
 :::
 
 <script setup>
-import '@42sol/vui/dist/vui.css';
 import { h, ref } from 'vue';
+
+import '@42sol/vui/dist/vui.css';
 import { VuiCascader } from '@42sol/vui';
-
-function getDocCompaniesAsync() {
-  return new Promise((res) => {
-    setTimeout(() => {
-      res([{ value: 'kfc', title: 'KFC', options: "Документы KFC" }]);
-    }, 5000);
-  });
-}
-
-const data1 = [
-  {
-    value: "Document",
-    title: "Документы",
-    options: [
-      { value: "FamilyMember", title: "Члены семьи", options: [] },
-      { 
-        value: "Company", title: "Компании", getAsyncOptions: getDocCompaniesAsync,
-        options: [
-          {
-            value: "1", title: "Макдональдс",
-            options: [
-              { value: "1", title: "Документы Мака", render: () => h('div', 'Доки мака') }
-            ]
-          }
-        ]
-      },
-    ]
-  },
-  {
-    value: "Tax",
-    title: "Налоги",
-    children: [
-      {
-        value: 'IndividualTax', title: 'Налоги физ лиц',
-        children: [
-          { value: "1", title: "Налог на роскошь" },
-          { value: "2", title: "НДФЛ" }
-        ]
-      }
-    ]
-  },
-];
-
-const value1 = ref([]);
+// import { CodeViewCollapse } from './../vue/components';
 </script>
 
-<vui-cascader :data='data1' v-model='value1' clearable></vui-cascader>
+<!-- <CodeViewCollapse> -->
+  <vui-cascader :data='data1' v-model='value1'></vui-cascader>
+<!-- </CodeViewCollapse> -->

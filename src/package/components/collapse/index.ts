@@ -1,1 +1,1 @@
-export { default as CollapseBody } from './CollapseBody.vue';
+export { default as VuiCollapseBody } from './CollapseBody.vue';
