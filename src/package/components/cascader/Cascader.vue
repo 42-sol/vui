@@ -289,7 +289,8 @@ function onInputClick() {
  * On input blur
  */
 function onInputBlur() {
-  needFilteredValues.value = false;
+  // TODO for now its too complex to connect input-focus & cascades-viisbility
+  // needFilteredValues.value = false;
 }
 
 /**
@@ -297,6 +298,7 @@ function onInputBlur() {
  */
 function clickOutside() {
   setIsOpened(false);
+  needFilteredValues.value = false;
 }
 
 /**
