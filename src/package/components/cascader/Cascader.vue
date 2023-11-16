@@ -9,6 +9,7 @@
       :placeholder='props.placeholder'
       :disabled='props.disabled'
       @on-focus='onInputClick'
+      @on-blur='onInputBlur'
       :readonly='!props.filterable'
     />
   </div>
@@ -123,6 +124,10 @@ const visibleCascades = computed(() => {
  */
 const selectedOptions: Ref<CascadeOptionObj[]> = ref([]);
 provide('selectedOptions', selectedOptions);
+watch(() => selectedOptions.value, () => {
+  const _ = selectedOptions.value.map(_ => _.title);
+  inputModelValue.value = _.join(props.separator);
+});
 
 /**
  * Value to filter options by input
@@ -132,6 +137,10 @@ const needFilteredValues = ref(false);
 function onInputModelValue(v: string) {
   needFilteredValues.value = true;
   inputModelValue.value = v;
+  
+  if (!v) {
+    onClearInput();
+  }
 }
 
 /**
@@ -168,7 +177,12 @@ const allLastOptions = computed<CascadeOptionObj[]>(() => {
 });
 
 const allFilteredLastOptions = computed(() => {
-  return allLastOptions.value.filter(_ => _.title.startsWith(inputModelValue.value));
+  return allLastOptions.value.filter(option => {
+    const srcString = option.title?.toLowerCase();
+    const filterString = inputModelValue.value.toLowerCase();
+
+    return srcString.startsWith(filterString);
+  });
 })
 
 /**
@@ -190,10 +204,6 @@ refresh();
 watch(() => props.data, () => {
   refresh();
 });
-watch(() => selectedOptions.value, () => {
-  const _ = selectedOptions.value.map(_ => _.title);
-  inputModelValue.value = _.join(props.separator);
-})
 
 /**
  * Is the cascade last and active
@@ -274,6 +284,13 @@ onMounted(() => {
 function onInputClick() {
   setIsOpened(true);
 };
+
+/**
+ * On input blur
+ */
+function onInputBlur() {
+  needFilteredValues.value = false;
+}
 
 /**
  * On click outside the cascader
@@ -362,16 +379,16 @@ function removeCascade() {
 /**
  * Clear the input - set model value as []
  */
-// function clear() {
-//   selectedOptions.value = [];
-//   addCreatedCascadeFrom(rootOption.value, 0);
-// }
+function clear() {
+  selectedOptions.value = [];
+  addCreatedCascadeFrom(rootOption.value, 0);
+}
 
-// function onClearInput() {
-//   clear();
-//   emit('update:modelValue', reformData(selectedOptions.value));
-//   inputEl.value?.focus();
-// }
+function onClearInput() {
+  clear();
+  emit('update:modelValue', reformData(selectedOptions.value));
+  inputEl.value?.focus();
+}
 
 /**
  * Use transform-method from props or default one

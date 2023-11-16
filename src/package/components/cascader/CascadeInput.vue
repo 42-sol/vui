@@ -60,7 +60,7 @@ function onInputClick() {
  * When clear the input field
  */
 function onClear() {
-  emit('on-clear')
+  emit('on-clear');
 }
 </script>
 
