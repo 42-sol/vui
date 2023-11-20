@@ -30,6 +30,9 @@
       :filterable='props.filterableCascades'
       :sortable='props.sortableCascades'
       >
+        <template #default='{ cascade }'>
+          <slot name='default' v-bind='{ cascade, selectedOptions }'></slot>
+        </template>
         <template #cascadeLoading='{ cascade }'>
           <slot name='cascadeLoading' v-bind='{ cascade }'></slot>
         </template>
@@ -39,6 +42,7 @@
         <template #beforeOptions='{ cascade }'>
           <slot name='beforeOptions' v-bind='{ cascade, selectedOptions }'></slot>
         </template>
+        
       </cascade>
 
       <cascade
@@ -50,6 +54,9 @@
       :noDataText='props.noDataText'
       :sortable='props.sortableCascades'
       >
+        <template #default='{ cascade }'>
+          <slot name='filteredOptions' v-bind='{ cascade, selectedOptions, inputModelValue }'></slot>
+        </template>
       </cascade>
     </transition-group>
   </div>
@@ -86,7 +93,7 @@ const props = withDefaults(defineProps<{
   noDataText: ''
 });
 // EMITS
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'on-filter']);
 
 // REFS
 const cascaderEl = ref(null);
@@ -137,6 +144,11 @@ const needFilteredValues = ref(false);
 function onInputModelValue(v: string) {
   needFilteredValues.value = true;
   inputModelValue.value = v;
+
+  if (props.filterable) {
+    emit('on-filter', { search: inputModelValue.value  });
+  }
+
   
   if (!v) {
     onClearInput();

@@ -79,7 +79,12 @@ const value1 = ref([]);
 const value2 = ref(['location', '2']);
 const value3 = ref([]);
 const value4 = ref([]);
+const value5 = ref([]);
 // const value = ref(['Document', 'Company', '1', '1']);
+
+function onFilter(...args: unknown[]) {
+  console.log('onFilter', ...args)
+}
 </script>
 
 <template>
@@ -131,6 +136,25 @@ const value4 = ref([]);
     sortableCascades
     filterable
     ></vui-cascader>
+  </section>
+
+  <section>
+    <h3>Simple Cascader</h3>
+    <p>It's value: {{ value4 }}</p>
+    <vui-cascader
+    class='w-96'
+    :data='data1'
+    v-model='value5'
+    filterable
+    sortableCascades
+    @on-filter='onFilter'
+    >
+      <template #filteredOptions='{ cascade, selectedOptions, inputModelValue }'>
+        <p>{{ inputModelValue }}</p>
+        <p>{{ cascade }}</p>
+        <p>{{ selectedOptions }}</p>
+      </template>
+    </vui-cascader>
   </section>
 
   <!-- <section> -->

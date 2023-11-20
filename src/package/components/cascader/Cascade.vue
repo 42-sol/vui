@@ -1,55 +1,59 @@
 <template>
 <div class="vui-cascade" v-bind='cascadeStyling'>
   <div class="vui-cascade__scrollable">
-    <div class="vui-cascade__top-space">
-      <slot name='backBtn' v-bind='{ back }'>
-        <div class="vui-cascade__back-btn" v-if='props.canBack' @click='back'>
-          <i _i-ep:back/>
-        </div>
-      </slot>
+    <slot name='default' v-bind='{ cascade: props.cascade, optionsList }'>
 
-      <div
-      class="vui-cascade__sort-btn"
-      :class='sort ? "vui-cascade__sort-btn--selected" : ""'
-      v-if='props.sortable'
-      @click='changeSort'
-      >
-        <i :class='sort === "desc" ? "i-ri:sort-desc" : "i-ri:sort-asc"'/>
+      <div class="vui-cascade__top-space">
+        <slot name='backBtn' v-bind='{ back }'>
+          <div class="vui-cascade__back-btn" v-if='props.canBack' @click='back'>
+            <i _i-ep:back/>
+          </div>
+        </slot>
+
+        <div
+        class="vui-cascade__sort-btn"
+        :class='sort ? "vui-cascade__sort-btn--selected" : ""'
+        v-if='props.sortable'
+        @click='changeSort'
+        >
+          <i :class='sort === "desc" ? "i-ri:sort-desc" : "i-ri:sort-asc"'/>
+        </div>
+
+        <vui-input
+        class='w-full'
+        v-if='props.filterable'
+        v-model='filter'
+        clearable
+        />
       </div>
 
-      <vui-input
-      class='w-full'
-      v-if='props.filterable'
-      v-model='filter'
-      clearable
-      />
-    </div>
+      <div class="flex items-center justify-center w-full">
+        <slot name='cascadeLoading' v-bind='{ cascade: props.cascade }'>
+          <span v-if='cascade.loadStatus === "process"'>Loading...</span>
+        </slot>
+        <span v-if='cascade.loadStatus === "error"'>Data hasn't been loaded</span>
+      </div>
 
-    <div class="flex items-center justify-center w-full">
-      <slot name='cascadeLoading' v-bind='{ cascade: props.cascade }'>
-        <span v-if='cascade.loadStatus === "process"'>Loading...</span>
-      </slot>
-      <span v-if='cascade.loadStatus === "error"'>Data hasn't been loaded</span>
-    </div>
+      <slot name='beforeOptions' v-bind='{ cascade: props.cascade }'></slot>
 
-    <slot name='beforeOptions' v-bind='{ cascade: props.cascade }'></slot>
+      <cascade-option
+      v-for='option in optionsList' :key='option.id || option.value'
+      :cascade='cascade'
+      :option='option'
+      @on-click='onOptionClick'
+      ></cascade-option>
 
-    <cascade-option
-    v-for='option in optionsList' :key='option.id || option.value'
-    :cascade='cascade'
-    :option='option'
-    @on-click='onOptionClick'
-    ></cascade-option>
+      <template v-if='cascade.loadStatus != "process" && !cascade.options.length'>
+        <slot name='cascadeNoData' v-bind='{ cascade: props.cascade }'>
+          <div class="vui-cascade__no-data">{{ props.noDataText || 'no data' }}</div>
+        </slot>
+      </template>
 
-    <template v-if='cascade.loadStatus != "process" && !cascade.options.length'>
-      <slot name='cascadeNoData' v-bind='{ cascade: props.cascade }'>
-        <div class="vui-cascade__no-data">{{ props.noDataText || 'no data' }}</div>
-      </slot>
-    </template>
+      <transition class='vui-cascade__fog-transition'>
+        <div class="vui-cascade__fog" v-if='props.fog'></div>
+      </transition>
+    </slot>
 
-    <transition class='vui-cascade__fog-transition'>
-      <div class="vui-cascade__fog" v-if='props.fog'></div>
-    </transition>
   </div>
 </div>
 </template>
