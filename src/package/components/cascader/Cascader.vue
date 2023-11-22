@@ -55,7 +55,7 @@
       :sortable='props.sortableCascades'
       >
         <template #default='{ cascade }'>
-          <slot name='filteredOptions' v-bind='{ cascade, selectedOptions, inputModelValue }'></slot>
+          <slot name='filteredOptions' v-bind='{ cascade, selectedOptions, inputModelValue, onChoose: onCustomChooseFilteredOption }'></slot>
         </template>
       </cascade>
     </transition-group>
@@ -341,6 +341,15 @@ function onSelectFilteredOption({ optionParams }: CascadeSelectEmitOptions) {
 
   emit('update:modelValue', fullValue);
 
+  nextTick(() => {
+    refresh();
+  });
+}
+
+function onCustomChooseFilteredOption() {
+  needFilteredValues.value = false;
+  isOpened.value = false;
+  clear();
   nextTick(() => {
     refresh();
   });

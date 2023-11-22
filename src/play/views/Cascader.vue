@@ -79,7 +79,7 @@ const value1 = ref([]);
 const value2 = ref(['location', '2']);
 const value3 = ref([]);
 const value4 = ref([]);
-const value5 = ref([]);
+const value5 = ref<[string?, string?]>([]);
 // const value = ref(['Document', 'Company', '1', '1']);
 
 function onFilter(...args: unknown[]) {
@@ -140,7 +140,7 @@ function onFilter(...args: unknown[]) {
 
   <section>
     <h3>Simple Cascader</h3>
-    <p>It's value: {{ value4 }}</p>
+    <p>It's value: {{ value5 }}</p>
     <vui-cascader
     class='w-96'
     :data='data1'
@@ -149,8 +149,8 @@ function onFilter(...args: unknown[]) {
     sortableCascades
     @on-filter='onFilter'
     >
-      <template #filteredOptions='{ cascade, selectedOptions, inputModelValue }'>
-        <p>{{ inputModelValue }}</p>
+      <template #filteredOptions='{ cascade, selectedOptions, inputModelValue, onChoose }'>
+        <p @click='() => { value5 = ["location", "3"]; onChoose() }'>{{ inputModelValue }}</p>
         <p>{{ cascade }}</p>
         <p>{{ selectedOptions }}</p>
       </template>
