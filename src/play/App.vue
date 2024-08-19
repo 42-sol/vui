@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import './style.scss';
+
 import { useRouter } from 'vue-router';
 
 const views = useRouter().getRoutes().filter(_ => _.path !== '/');
