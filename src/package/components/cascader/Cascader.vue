@@ -3,32 +3,32 @@
   <div ref='inputWrapperEl' class="vue-cascader__input-wrapper">
     <vui-input
       ref='inputEl'
-      :modelValue='inputModelValue'
-      @on-input='onInputModelValue'
+      :model-value='inputModelValue'
       :clearable='props.clearable'
       :placeholder='props.placeholder'
       :disabled='props.disabled'
+      :readonly='!props.filterable'
+      @on-input='onInputModelValue'
       @on-focus='onInputClick'
       @on-blur='onInputBlur'
-      :readonly='!props.filterable'
     />
   </div>
 
   <div ref='dropdownEl' class="vui-cascader__dropdown">
     <transition-group tag='div' mode='in-out' name='vui-cascader-transition'>
       <cascade
-      v-for='(cascade, i) in visibleCascades'
-      :key='cascade.id'
-      :cascade='cascade'
-      :padding='i'
-      :fog='!isCurrent(cascade)'
-      :canBack='i > 0'
-      :configs='props.cascadesConfig'
-      @on-select='onSelectOption'
-      @on-back='removeCascade'
-      :noDataText='props.noDataText'
-      :filterable='props.filterableCascades'
-      :sortable='props.sortableCascades'
+        v-for='(cascade, i) in visibleCascades'
+        :key='cascade.id'
+        :cascade='cascade'
+        :padding='i'
+        :fog='!isCurrent(cascade)'
+        :can-back='i > 0'
+        :configs='props.cascadesConfig'
+        :no-data-text='props.noDataText'
+        :filterable='props.filterableCascades'
+        :sortable='props.sortableCascades'
+        @on-select='onSelectOption'
+        @on-back='removeCascade'
       >
         <template #default='{ cascade }'>
           <slot name='default' v-bind='{ cascade, selectedOptions }'></slot>
@@ -42,17 +42,16 @@
         <template #beforeOptions='{ cascade }'>
           <slot name='beforeOptions' v-bind='{ cascade, selectedOptions }'></slot>
         </template>
-        
       </cascade>
 
       <cascade
-      v-if='props.filterable && needFilteredValues && inputModelValue'
-      key='filterCascade'
-      :cascade='{ id: 1, options: allFilteredLastOptions }'
-      :configs='props.cascadesConfig'
-      @on-select='onSelectFilteredOption'
-      :noDataText='props.noDataText'
-      :sortable='props.sortableCascades'
+        v-if='props.filterable && needFilteredValues && inputModelValue'
+        key='filterCascade'
+        :cascade='{ id: 1, options: allFilteredLastOptions }'
+        :configs='props.cascadesConfig'
+        :no-data-text='props.noDataText'
+        :sortable='props.sortableCascades'
+        @on-select='onSelectFilteredOption'
       >
         <template #default='{ cascade }'>
           <slot name='filteredOptions' v-bind='{ cascade, selectedOptions, inputModelValue, onChoose: onCustomChooseFilteredOption }'></slot>
@@ -82,23 +81,28 @@ const props = withDefaults(defineProps<{
   clearable?: boolean
   disabled?: boolean
   cascadesConfig?: CascadesConfig
-  transform?: (_modelValue: unknown, _createCascadeFrom: (_: CascadeOptionObj, id: number) => void) => CascadeOptionObj[]
-  reform?: (_selectedOptions: CascadeOptionObj[]) => unknown
   filterable?: boolean
   filterableCascades?: boolean
-  sortableCascades?: boolean
+  sortableCascades?: boolean,
+  transform?: (_modelValue: unknown, _createCascadeFrom: (_: CascadeOptionObj, id: number) => void) => CascadeOptionObj[]
+  reform?: (_selectedOptions: CascadeOptionObj[]) => unknown
 }>(), {
   separator: '/',
   placeholder: '',
   noDataText: ''
 });
+
 // EMITS
-const emit = defineEmits(['update:modelValue', 'on-filter']);
+const emit = defineEmits([
+  'on-filter',
+  'on-visible-change',
+  'update:model-value',
+]);
 
 // REFS
 const cascaderEl = ref(null);
 const inputWrapperEl = ref(null);
-const inputEl = ref(null) as Ref<HTMLInputElement | null>;
+const inputEl = ref<HTMLInputElement>();
 const dropdownEl = ref(null);
 
 /**
@@ -141,6 +145,7 @@ watch(() => selectedOptions.value, () => {
  */
 const inputModelValue = ref('');
 const needFilteredValues = ref(false);
+
 function onInputModelValue(v: string) {
   needFilteredValues.value = true;
   inputModelValue.value = v;
@@ -149,7 +154,6 @@ function onInputModelValue(v: string) {
     emit('on-filter', { search: inputModelValue.value  });
   }
 
-  
   if (!v) {
     onClearInput();
   }
@@ -211,6 +215,7 @@ function refresh() {
   addCreatedCascadeFrom(rootOption.value, 0);
   selectedOptions.value = transformData(props.modelValue || []);
 }
+
 refresh();
 
 watch(() => props.data, () => {
@@ -253,7 +258,7 @@ onMounted(() => {
       offset(4),
       shift()
     ],
-  }).then(({y}) => {
+  }).then(({ y }) => {
     Object.assign(dropdown.style, {
       top: `${y}px`,
     });
@@ -261,39 +266,13 @@ onMounted(() => {
 });
 
 /**
- * ?WRONG Difficult method to filter with cascades
- */
-// function onInput(v: string) {
-//   if (!v) return onClearInput();
-
-//   const values = v.split(props.separator);
-//   const savedSelectedOptions = [...selectedOptions.value];
-//   clear();
-
-//   const somethingWrong = () => selectedOptions.value = savedSelectedOptions;
-
-//   for (let i = 0; i < values.length; i++) {
-//     const opt = cascades.value[i]?.options?.find(_ => _.title === values[i])
-
-//     if (!opt) {
-//       somethingWrong();
-//       break;
-//     }
-
-//     onSelectOption({
-//       cascade: cascades.value[i],
-//       optionParams: {
-//         option: opt,
-//         last: !(opt.options?.length || opt.getAsyncOptions)
-//       }
-//     });
-//   }
-// }
-
-/**
  * On input click
  */
 function onInputClick() {
+  if (!isOpened.value) {
+    emit('on-visible-change', true);
+  }
+
   setIsOpened(true);
 };
 
@@ -301,7 +280,7 @@ function onInputClick() {
  * On input blur
  */
 function onInputBlur() {
-  // TODO for now its too complex to connect input-focus & cascades-viisbility
+  // TODO for now its too complex to connect input-focus & cascades-visibility
   // needFilteredValues.value = false;
 }
 
@@ -309,6 +288,10 @@ function onInputBlur() {
  * On click outside the cascader
  */
 function clickOutside() {
+  if (isOpened.value) {
+    emit('on-visible-change', false);
+  }
+
   setIsOpened(false);
   needFilteredValues.value = false;
 }
@@ -322,7 +305,7 @@ function onSelectOption({ cascade, optionParams }: CascadeSelectEmitOptions) {
   selectedOptions.value[cascade.id] = optionParams.option;
 
   if (optionParams.last) {
-    emit('update:modelValue', reformData(selectedOptions.value));
+    emit('update:model-value', reformData(selectedOptions.value));
 
     nextTick(() => {
       setIsOpened(false);
@@ -339,7 +322,7 @@ function onSelectFilteredOption({ optionParams }: CascadeSelectEmitOptions) {
 
   const fullValue = [...previousValues, selectedValue];
 
-  emit('update:modelValue', fullValue);
+  emit('update:model-value', fullValue);
 
   nextTick(() => {
     refresh();
@@ -409,7 +392,7 @@ function clear() {
 
 function onClearInput() {
   clear();
-  emit('update:modelValue', reformData(selectedOptions.value));
+  emit('update:model-value', reformData(selectedOptions.value));
   inputEl.value?.focus();
 }
 
@@ -475,7 +458,7 @@ function reformData(_selectedOptions: CascadeOptionObj[]): unknown {
 }
 </script>
 
-<style scoped lang='scss'>
+<style lang='scss'>
 $el: 'vui-cascader';
 
 .#{$el} {
