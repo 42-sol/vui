@@ -1,18 +1,18 @@
 <template>
 <div
-class="vui-cascade-option"
-v-bind='blockStyling'
-:title='props.option.title'
-@click='onClick'
+  v-bind='blockStyling'
+  class="vui-cascade-option"
+  :title='props.option.title'
+  @click='onClick'
 >
   <div class="vui-cascade-option__string">
     <div class="vui-cascade-option__string-left">
       <div class="vui-cascade-option__tree-btn-space">
         <div
-        class="vui-cascade-option__tree-btn"
         v-if='hasChildOptions'
-        @click.stop='isChildCollapseOpened = !isChildCollapseOpened'
-        :class='{"vui-cascade-option__tree-btn--opened": isChildCollapseOpened}'
+          class="vui-cascade-option__tree-btn"
+          :class='{"vui-cascade-option__tree-btn--opened": isChildCollapseOpened}'
+          @click.stop='isChildCollapseOpened = !isChildCollapseOpened'
         >
           <i _i-bxs:right-arrow></i>
         </div>
@@ -32,16 +32,16 @@ v-bind='blockStyling'
   </div>
 
   <collapse-body
-  v-if='hasChildOptions'
-  :expanded='isChildCollapseOpened'
-  :option='props.option'
+    v-if='hasChildOptions'
+    :expanded='isChildCollapseOpened'
+    :option='props.option'
   >
     <cascade-option
-    v-for='child in option.children' :key='child.id || child.value'
-    :cascade='cascade'
-    :option='child'
-    @on-click='(opt) => emit("on-click", opt)'
-    @click.stop
+      v-for='child in option.children' :key='child.id || child.value'
+      :cascade='cascade'
+      :option='child'
+      @on-click='(opt) => emit("on-click", opt)'
+      @click.stop
     ></cascade-option>
   </collapse-body>
 </div>
@@ -49,7 +49,7 @@ v-bind='blockStyling'
 
 <script setup lang="ts">
 import type { Ref } from 'vue';
-import type { CascadeObj, CascadeOptionObj } from '@/types.d';
+import type { CascadeObj, CascadeOptionObj, OptionClickEmitOptions } from '@/types.d';
 
 import { computed, inject, ref } from 'vue';
 import { styling } from '@/package/utils';
@@ -109,10 +109,10 @@ const blockStyling = computed(() => styling(({ classes }) => {
  * Separate clicks if it is a last option in row (if has no own options)
  */
 function onClick(): void {
-  const params = { option: props.option, last: !hasOwnOptions.value };
+  const params: OptionClickEmitOptions = { option: props.option, last: !hasOwnOptions.value };
 
   let shouldEmit = true;
-  const preventEmit = () => shouldEmit = false; 
+  const preventEmit = () => shouldEmit = false;
 
   props.option.onClick?.({ preventEmit, option: props.option });
 
@@ -122,7 +122,7 @@ function onClick(): void {
 }
 </script>
 
-<style scoped lang='scss'>
+<style lang='scss'>
 $el: 'vui-cascade-option';
 
 .#{$el} {

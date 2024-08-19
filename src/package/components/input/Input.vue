@@ -1,30 +1,30 @@
 <template>
   <div v-bind='blockStyling'>
     <input-immitator
-    :focused='generalFocus'
-    :error='props.error'
-    :disabled='props.disabled'
+      :focused='generalFocus'
+      :error='props.error'
+      :disabled='props.disabled'
     >
       <template #left></template>
-      
+
       <div class="vui-input__wrapper">
         <input
-        ref='inputEl'
-        class='vui-input__input'
-        :type='props.type'
-        :value='props.modelValue'
-        :placeholder='props.placeholder'
-        :disabled='props.disabled'
-        :readonly='props.readonly'
-        @input='onInput'
-        @focus='onFocus'
-        @blur='onBlur'
+          ref='inputEl'
+          class='vui-input__input'
+          :type='props.type'
+          :value='props.modelValue'
+          :placeholder='props.placeholder'
+          :disabled='props.disabled'
+          :readonly='props.readonly'
+          @input='onInput'
+          @focus='onFocus'
+          @blur='onBlur'
         >
 
         <div
-        class='vui-input__clear-btn'
-        v-if='props.clearable && props.modelValue'
-        @click='onClear'
+          v-if='props.clearable && props.modelValue'
+          class='vui-input__clear-btn'
+          @click='onClear'
         >
           <i _i-material-symbols:close></i>
         </div>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang='ts'>
-import { Ref, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 import InputImmitator from './InputImmitator.vue';
 import { styling } from '@/package/utils';
 
@@ -57,10 +57,10 @@ const props = withDefaults(defineProps<{
   error: false
 });
 // EMITS
-const emit = defineEmits(['update:modelValue', 'on-input', 'on-change', 'on-focus', 'on-blur']);
+const emit = defineEmits(['update:model-value', 'on-input', 'on-change', 'on-focus', 'on-blur']);
 
 const block = 'vui-input';
-const inputEl = ref(null) as Ref<HTMLInputElement | null>;
+const inputEl = ref<HTMLInputElement>();
 
 /**
  * Variable to make focus in inputImmitator
@@ -97,7 +97,7 @@ function onClear() {
 function setValue(value: number | string) {
   const wasChanged = value !== props.modelValue;
 
-  emit('update:modelValue', value, props.modelValue);
+  emit('update:model-value', value, props.modelValue);
   emit('on-input', value, props.modelValue);
 
   if (wasChanged) {
@@ -141,12 +141,12 @@ defineExpose({
 })
 </script>
 
-<style scoped lang='scss'>
+<style lang='scss'>
 $el: 'vui-input';
 
 .#{$el} {
   &__wrapper {
-    @apply flex p-1 bg-white;
+    @apply flex items-center p-1 bg-white;
   }
 
   &__input {
@@ -169,7 +169,7 @@ $el: 'vui-input';
   }
 
   &--readonly {
-    
+
   }
 
   &--disabled {
