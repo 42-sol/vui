@@ -40,7 +40,7 @@
       v-for='child in option.children' :key='child.id || child.value'
       :cascade='cascade'
       :option='child'
-      @on-click='(opt) => emit("on-click", opt)'
+      @on-click='(opt: OptionClickEmitOptions) => emit("on-click", opt)'
       @click.stop
     ></cascade-option>
   </collapse-body>
